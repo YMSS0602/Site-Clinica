@@ -1,89 +1,117 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clínica de Psicologia</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="clinica.css">
-</head>
-<body>
-
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">Clínica</div>
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <div class="nav-right">
-      <a href="#terapia" class="btn-cta">.Iniciar Terapia. <span class="arrow">→</span></a>
-      
-      <!-- Botão das 3 Barras no Topo Direito -->
-      <button class="menu-btn" id="openMenuBtn" aria-label="Abrir Informações">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- GAVETA LATERAL / PAINEL DE INFORMAÇÕES -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-  
-  <aside class="sidebar" id="sidebar">
-    <button class="close-btn" id="closeMenuBtn" aria-label="Fechar">&times;</button>
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <div class="sidebar-content">
-      <h2>Sobre a Clínica</h2>
-      <p class="sidebar-desc">
-        Somos um espaço dedicado ao acolhimento e à saúde mental, com foco em atendimento humanizado e psicologia feminista.
-      </p>
+    <link rel="stylesheet" href="clinica.css">
+  </head>
+  <body>
 
-      <hr class="divider">
-
-      <div class="info-group">
-        <h3>Serviços</h3>
-        <ul>
-          <li><a href="#psicoterapia">Psicoterapia Individual</a></li>
-          <li><a href="#avaliacao">Avaliação Neuropsicológica</a></li>
-          <li><a href="#grupos">Grupos Terapêuticos</a></li>
-        </ul>
-      </div>
-
-      <div class="info-group">
-        <h3>Atendimento</h3>
-        <p><strong>Modalidade:</strong> Online e Presencial</p>
-        <p><strong>Horários:</strong> Seg a Sex, das 8h às 20h</p>
-      </div>
-
-      <div class="info-group">
-        <h3>Contato</h3>
-        <p>Email: contato@clinica.com.br</p>
-        <p>WhatsApp: (00) 90000-0000</p>
+    <!-- BARRA SUPERIOR DE CONTATO (TOPBAR) -->
+    <div class="topbar">
+      <div class="topbar-container">
+        <div class="topbar-info">
+          <span>Seja Bem-Vinda(o)!</span>
+          <span class="divider-dot">•</span>
+          <a href="tel:(73)98139-4240">📞 (73) 98139-4240</a>
+          <span class="divider-dot">•</span>
+          <a href="mailto:elaborarsaudemental@gmail.com">✉️ elaborarsaudemental@gmail.com</a>
+        </div>
+        <div class="topbar-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/clinica.elaborar/" aria-label="Instagram">📷</a>
+        </div>
       </div>
     </div>
-  </aside>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+    <!-- NAVBAR PRINCIPAL -->
+    <header class="navbar">
+      <div class="nav-container">
 
-    <div class="hero-content">
-      <h1>A Paz de Estar Entre Mulheres</h1>
-      <p>Faça Terapia na Primeira Clínica de Psicologia Feminista do Brasil</p>
-    </div>
-  </section>
+        
+          <!-- LOGO -->
+      <a href="#" class="logo-brand">
+            <img src="logo.png" alt="Logo da Clínica" class="logo-img">
+          </a>
+          
+        <!-- LINKS COM DROPDOWNS -->
+        <nav class="nav-menu">
+          
+          <!-- Dropdown: Sobre -->
+          <div class="nav-item has-dropdown">
+            <a href="#sobre" class="nav-link">Sobre</a>
+            <div class="dropdown-menu">
+              <a href="#a-clinica">A clínica</a>
+              <a href="#profissionais">Profissionais</a>
+            </div>
+          </div>
 
-  <!-- BOTÃO FLUTUANTE WHATSAPP -->
-  <a href="https://wa.me/5500000000000" target="_blank" class="whatsapp-btn" id="whatsappBtn" title="Fale conosco no WhatsApp">
-    <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
-      <path d="M16 2a13.9 13.9 0 0 0-12 21l-1.9 7 7.2-1.9A13.9 13.9 0 1 0 16 2zm8.1 19.6c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.6.2-5.3-1.3-4.5-1.9-7.4-6.4-7.6-6.7-.2-.3-1.8-2.4-1.8-4.6 0-2.2 1.1-3.3 1.5-3.8.4-.5.9-.6 1.2-.6h.9c.3 0 .7 0 1 .7.3.8 1.1 2.8 1.2 3 .1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.5.8 1.8 2.8 3.8 4.6 2.6 2.3 4.8 3 5.5 3.3.4.2.8.1 1.1-.2.3-.4 1.3-1.5 1.7-2 .3-.5.7-.4 1.1-.2.4.2 2.6 1.2 3 1.4.4.2.7.3.8.5.1.4-.2 1.9-.5 2.8z"/>
-    </svg>
-  </a>
+          <!-- Dropdown: Serviços -->
+          <div class="nav-item has-dropdown">
+            <a href="#servicos" class="nav-link">Serviços</a>
+            <div class="dropdown-menu">
+              <a href="#psicoterapia">Psicoterapia</a>
+              <a href="#psicanalise">Psicanálise</a>
+              <a href="#psiquiatria">Psiquiatria</a>
+              <a href="#avaliacao">Avaliação Neuropsicológica</a>
+              <a href="#gestantes">Psicoterapia a gestantes/puérperas</a>
+              <a href="#idosos">Psicoterapia a idosas</a>
+              <a href="#parentalidade">Orientação a pais</a>
+              <a href="#supervisao">Supervisão em psicanálise</a>
+            </div>
+          </div>
 
-  <script src="clinica.js"></script>
-</body>
-</html>
+          <!-- Dropdown: Serviços Online -->
+          <div class="nav-item has-dropdown">
+            <a href="#servicos-online" class="nav-link">Serviços Online</a>
+            <div class="dropdown-menu">
+              <a href="#terapia-online">Terapia on-line</a>
+              <a href="#supervisao-online">Supervisão on-line</a>
+            </div>
+          </div>
+
+          <div class="nav-item">
+            <a href="#convenios" class="nav-link">Convênios</a>
+          </div>
+
+          <div class="nav-item">
+            <a href="#blog" class="nav-link">Blog</a>
+          </div>
+
+          <div class="nav-item">
+            <a href="#fale-conosco" class="nav-link">Fale Conosco</a>
+          </div>
+
+        </nav>
+
+        <!-- BOTÃO DE DESTAQUE -->
+        <a href="#agende" class="btn-agendar">AGENDE UMA CONSULTA</a>
+
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <h1>Um Espaço Seguro para Elaborar e Transformar</h1>
+        <p>Cuidando da sua saúde mental com acolhimento, empatia e excelência profissional</p>
+      </div>
+    </section>
+
+    <!-- BOTÃO WHATSAPP -->
+    <a href="https://api.whatsapp.com/send?phone=5573981394240" target="_blank" class="whatsapp-btn" title="WhatsApp">
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
+        <path d="M16 2a13.9 13.9 0 0 0-12 21l-1.9 7 7.2-1.9A13.9 13.9 0 1 0 16 2zm8.1 19.6c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.6.2-5.3-1.3-4.5-1.9-7.4-6.4-7.6-6.7-.2-.3-1.8-2.4-1.8-4.6 0-2.2 1.1-3.3 1.5-3.8.4-.5.9-.6 1.2-.6h.9c.3 0 .7 0 1 .7.3.8 1.1 2.8 1.2 3 .1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.5.8 1.8 2.8 3.8 4.6 2.6 2.3 4.8 3 5.5 3.3.4.2.8.1 1.1-.2.3-.4 1.3-1.5 1.7-2 .3-.5.7-.4 1.1-.2.4.2 2.6 1.2 3 1.4.4.2.7.3.8.5.1.4-.2 1.9-.5 2.8z"/>
+      </svg>
+    </a>
+  </body>
+  </html> 

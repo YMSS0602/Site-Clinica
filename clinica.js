@@ -1,28 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const openMenuBtn = document.getElementById("openMenuBtn");
-  const closeMenuBtn = document.getElementById("closeMenuBtn");
+  const menuBtn = document.getElementById("menuBtn");
+  const closeBtn = document.getElementById("closeBtn");
   const sidebar = document.getElementById("sidebar");
   const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-  // Abrir o Painel
-  const openSidebar = () => {
+  function openSidebar() {
     sidebar.classList.add("active");
     sidebarOverlay.classList.add("active");
-    document.body.style.overflow = "hidden"; // Desativa a rolagem da página atrás
-  };
+    document.body.style.overflow = "hidden";
+  }
 
-  // Fechar o Painel
-  const closeSidebar = () => {
+  function closeSidebar() {
     sidebar.classList.remove("active");
     sidebarOverlay.classList.remove("active");
-    document.body.style.overflow = "auto"; // Reativa a rolagem
-  };
+    document.body.style.overflow = "";
+  }
 
-  openMenuBtn.addEventListener("click", openSidebar);
-  closeMenuBtn.addEventListener("click", closeSidebar);
+  menuBtn.addEventListener("click", openSidebar);
+  closeBtn.addEventListener("click", closeSidebar);
   sidebarOverlay.addEventListener("click", closeSidebar);
 
-  // Fechar com a tecla ESC
+  // Fechar ao clicar em qualquer link da barra lateral
+  document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", closeSidebar);
+  });
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && sidebar.classList.contains("active")) {
       closeSidebar();
