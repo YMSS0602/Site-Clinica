@@ -29,89 +29,151 @@
         </div>
       </div>
     </div>
-
-    <!-- NAVBAR PRINCIPAL -->
-    <header class="navbar">
-      <div class="nav-container">
-
-        
-          <!-- LOGO -->
-      <a href="#" class="logo-brand">
-            <img src="logo.png" alt="Logo da Clínica" class="logo-img">
-          </a>
-          
-        <!-- LINKS COM DROPDOWNS -->
-        <nav class="nav-menu">
-          
-          <!-- Dropdown: Sobre -->
-          <div class="nav-item has-dropdown">
-            <a href="#sobre" class="nav-link">Sobre</a>
-            <div class="dropdown-menu">
-              <a href="#a-clinica">A clínica</a>
-              <a href="#profissionais">Profissionais</a>
-            </div>
-          </div>
-
-          <!-- Dropdown: Serviços -->
-          <div class="nav-item has-dropdown">
-            <a href="#servicos" class="nav-link">Serviços</a>
-            <div class="dropdown-menu">
-              <a href="#psicoterapia">Psicoterapia</a>
-              <a href="#psicanalise">Psicanálise</a>
-              <a href="#psiquiatria">Psiquiatria</a>
-              <a href="#avaliacao">Avaliação Neuropsicológica</a>
-              <a href="#gestantes">Psicoterapia a gestantes/puérperas</a>
-              <a href="#idosos">Psicoterapia a idosas</a>
-              <a href="#parentalidade">Orientação a pais</a>
-              <a href="#supervisao">Supervisão em psicanálise</a>
-            </div>
-          </div>
-
-          <!-- Dropdown: Serviços Online -->
-          <div class="nav-item has-dropdown">
-            <a href="#servicos-online" class="nav-link">Serviços Online</a>
-            <div class="dropdown-menu">
-              <a href="#terapia-online">Terapia on-line</a>
-              <a href="#supervisao-online">Supervisão on-line</a>
-            </div>
-          </div>
-
-          <div class="nav-item">
-            <a href="#convenios" class="nav-link">Convênios</a>
-          </div>
-
-          <div class="nav-item">
-            <a href="#blog" class="nav-link">Blog</a>
-          </div>
-
-          <div class="nav-item">
-            <a href="#fale-conosco" class="nav-link">Fale Conosco</a>
-          </div>
-
-        </nav>
-
-        <!-- BOTÃO DE DESTAQUE -->
-        <a href="#agende" class="btn-agendar">AGENDE UMA CONSULTA</a>
-
-      </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-        <h1>Um Espaço Seguro para Elaborar e Transformar</h1>
-        <p>Cuidando da sua saúde mental com acolhimento, empatia e excelência profissional</p>
-      </div>
-    </section>
-
-    <!-- BOTÃO WHATSAPP -->
-    <a href="https://api.whatsapp.com/send?phone=5573981394240" target="_blank" class="whatsapp-btn" title="WhatsApp">
-      <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
-        <path d="M16 2a13.9 13.9 0 0 0-12 21l-1.9 7 7.2-1.9A13.9 13.9 0 1 0 16 2zm8.1 19.6c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.6.2-5.3-1.3-4.5-1.9-7.4-6.4-7.6-6.7-.2-.3-1.8-2.4-1.8-4.6 0-2.2 1.1-3.3 1.5-3.8.4-.5.9-.6 1.2-.6h.9c.3 0 .7 0 1 .7.3.8 1.1 2.8 1.2 3 .1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.5.8 1.8 2.8 3.8 4.6 2.6 2.3 4.8 3 5.5 3.3.4.2.8.1 1.1-.2.3-.4 1.3-1.5 1.7-2 .3-.5.7-.4 1.1-.2.4.2 2.6 1.2 3 1.4.4.2.7.3.8.5.1.4-.2 1.9-.5 2.8z"/>
-      </svg>
+<!-- NAVBAR PRINCIPAL -->
+  <header class="navbar">
+  <div class="nav-container">
+    
+    <!-- LOGO -->
+    <a href="#" class="logo-brand">
+      <img src="logo.png" alt="Logo da Clínica" class="logo-img">
     </a>
-  </body>
-  </html> 
+
+    <!-- BOTÃO HAMBÚRGUER (Aparece no mobile) -->
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- CONTEÚDO DO MENU (Links + Botão) -->
+    <div class="nav-content" id="navContent">
+      <nav class="nav-menu">
+        <div class="nav-item has-dropdown">
+          <a href="#sobre" class="nav-link">Sobre</a>
+          <div class="dropdown-menu">
+            <a href="#a-clinica">A clínica</a>
+            <a href="#profissionais">Profissionais</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="#servicos" class="nav-link">Serviços</a>
+          <div class="dropdown-menu">
+            <a href="#psicoterapia">Psicoterapia</a>
+            <a href="#psicanalise">Psicanálise</a>
+            <a href="#psiquiatria">Psiquiatria</a>
+            <a href="#avaliacao">Avaliação Neuropsicológica</a>
+            <a href="#gestantes">Psicoterapia a gestantes/puérperas</a>
+            <a href="#idosos">Psicoterapia a idosas</a>
+            <a href="#parentalidade">Orientação a pais</a>
+            <a href="#supervisao">Supervisão em psicanálise</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="#servicos-online" class="nav-link">Serviços Online</a>
+          <div class="dropdown-menu">
+            <a href="#terapia-online">Terapia on-line</a>
+            <a href="#supervisao-online">Supervisão on-line</a>
+          </div>
+        </div>
+
+        <div class="nav-item"><a href="#convenios" class="nav-link">Convênios</a></div>
+        <div class="nav-item"><a href="#blog" class="nav-link">Blog</a></div>
+        <div class="nav-item"><a href="#fale-conosco" class="nav-link">Fale Conosco</a></div>
+      </nav>
+
+      <button class="btn-agendar" onclick="abrirModal()">AGENDE UMA CONSULTA</button>
+    </div>
+
+  </div>
+</header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Um Espaço Seguro para Elaborar e Transformar</h1>
+      <p>Cuidando da sua saúde mental com acolhimento, empatia e excelência profissional.</p>
+    </div>
+  </section>
+
+  <!-- BOTÃO WHATSAPP FLUTUANTE -->
+  <a href="https://api.whatsapp.com/send?phone=5573981394240" target="_blank" class="whatsapp-btn" title="WhatsApp">
+    <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor">
+      <path d="M16 2a13.9 13.9 0 0 0-12 21l-1.9 7 7.2-1.9A13.9 13.9 0 1 0 16 2zm8.1 19.6c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.6.2-5.3-1.3-4.5-1.9-7.4-6.4-7.6-6.7-.2-.3-1.8-2.4-1.8-4.6 0-2.2 1.1-3.3 1.5-3.8.4-.5.9-.6 1.2-.6h.9c.3 0 .7 0 1 .7.3.8 1.1 2.8 1.2 3 .1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.5.8 1.8 2.8 3.8 4.6 2.6 2.3 4.8 3 5.5 3.3.4.2.8.1 1.1-.2.3-.4 1.3-1.5 1.7-2 .3-.5.7-.4 1.1-.2.4.2 2.6 1.2 3 1.4.4.2.7.3.8.5.1.4-.2 1.9-.5 2.8z"/>
+    </svg>
+  </a>
+
+  <!-- MODAL DE AGENDAMENTO -->
+  <div id="modalAgendamento" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      
+      <h2>Agendar Consulta</h2>
+      <p>Preencha os dados abaixo para iniciar o atendimento pelo WhatsApp.</p>
+
+      <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
+        <div class="form-row">
+          <input type="text" id="nome" placeholder="Nome" required />
+          <input type="email" id="email" placeholder="E-mail" required />
+        </div>
+        
+        <div class="form-row">
+          <input type="tel" id="telefone" placeholder="Telefone / WhatsApp" required />
+          <input type="text" id="assunto" placeholder="Assunto" required />
+        </div>
+
+        <textarea id="mensagem" rows="4" placeholder="Descreva melhor suas dúvidas ou deixe-nos uma sugestão!" required></textarea>
+
+        <button type="submit" class="btn-submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function abrirModal() {
+      document.getElementById('modalAgendamento').style.display = 'flex';
+    }
+
+    function fecharModal() {
+      document.getElementById('modalAgendamento').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('modalAgendamento');
+      if (event.target === modal) {
+        fecharModal();
+      }
+    };
+
+    function enviarParaWhatsApp(event) {
+      event.preventDefault();
+
+      const numeroWhatsApp = "5573981394240";
+
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const telefone = document.getElementById('telefone').value;
+      const assunto = document.getElementById('assunto').value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      const textoMensagem = `*Novo Agendamento/Contato via Site*%0A%0A` +
+        `*Nome:* ${nome}%0A` +
+        `*E-mail:* ${email}%0A` +
+        `*Telefone:* ${telefone}%0A` +
+        `*Assunto:* ${assunto}%0A%0A` +
+        `*Mensagem:*%0A${mensagem}`;
+
+      const url = `https://wa.me/${numeroWhatsApp}?text=${textoMensagem}`;
+      window.open(url, '_blank');
+
+      fecharModal();
+    }
+  </script>
+
+</body>
+</html>
