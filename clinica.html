@@ -12,23 +12,6 @@
     <link rel="stylesheet" href="clinica.css">
   </head>
   <body>
-
-    <!-- BARRA SUPERIOR DE CONTATO (TOPBAR) -->
-    <div class="topbar">
-      <div class="topbar-container">
-        <div class="topbar-info">
-          <span>Seja Bem-Vinda(o)!</span>
-          <span class="divider-dot">•</span>
-          <a href="tel:(73)98139-4240">📞 (73) 98139-4240</a>
-          <span class="divider-dot">•</span>
-          <a href="mailto:elaborarsaudemental@gmail.com">✉️ elaborarsaudemental@gmail.com</a>
-        </div>
-        <div class="topbar-social">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="https://www.instagram.com/clinica.elaborar/" aria-label="Instagram">📷</a>
-        </div>
-      </div>
-    </div>
 <!-- NAVBAR PRINCIPAL -->
   <header class="navbar">
   <div class="nav-container">
@@ -67,6 +50,12 @@
             <a href="#idosos">Psicoterapia a idosas</a>
             <a href="#parentalidade">Orientação a pais</a>
             <a href="#supervisao">Supervisão em psicanálise</a>
+           
+<div class="nav-item">
+  <a href="https://linktr.ee/clinicaelaborar?utm_source=linktree_profile_share&ltsid=2f44fad0-5ec7-482d-a4d0-53eb343331c4" target="_blank" rel="noopener noreferrer" class="nav-link">
+    Links Úteis
+  </a>
+</div>  
           </div>
         </div>
 
@@ -80,7 +69,7 @@
 
         <div class="nav-item"><a href="#convenios" class="nav-link">Convênios</a></div>
         <div class="nav-item"><a href="#blog" class="nav-link">Blog</a></div>
-        <div class="nav-item"><a href="#fale-conosco" class="nav-link">Fale Conosco</a></div>
+        
       </nav>
 
       <button class="btn-agendar" onclick="abrirModal()">AGENDE UMA CONSULTA</button>
@@ -95,7 +84,7 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <h1>Um Espaço Seguro para Elaborar e Transformar</h1>
+      <h1>Um espaço seguro para Elaborar e Transformar</h1>
       <p>Cuidando da sua saúde mental com acolhimento, empatia e excelência profissional.</p>
     </div>
   </section>
@@ -174,6 +163,29 @@
       fecharModal();
     }
   </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navContent = document.getElementById('navContent');
 
+    if (hamburgerBtn && navContent) {
+      hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        navContent.classList.toggle('active');
+      });
+
+      // Fecha o menu ao clicar em qualquer link (incluindo o linktree)
+      const navLinks = document.querySelectorAll('.nav-link, .btn-agendar');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          hamburgerBtn.classList.remove('active');
+          navContent.classList.remove('active');
+        });
+      });
+    } else {
+      console.error('Elementos do menu hambúrguer não foram encontrados no DOM.');
+    }
+  });
+</script>
 </body>
 </html>
