@@ -6,13 +6,13 @@
 
 body {
   font-family: 'Syne', sans-serif;
-  background-color: #f8f6f3; /* Fundo geral em tom creme bem suave */
+  background-color: #f8f6f3; 
   color: #3d3530;
 }
 
 /* 1. TOPBAR (FAIXA SUPERIOR) */
 .topbar {
-  background-color: #b5a598;
+  background-color:#FFFDD0;
   border-bottom: 1px solid #9e8d80;
   padding: 0.6rem 0;
   font-size: 0.9rem;
@@ -22,7 +22,7 @@ body {
 
 .topbar-container {
   width: 100%;
-  max-width: 1200px; /* Alinhado perfeitamente com a navbar */
+  max-width: 1200px; 
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
@@ -48,6 +48,8 @@ body {
   gap: 1rem;
 }
 
+
+
 /* 2. NAVBAR PRINCIPAL */
 .navbar {
   background-color: #efebe8;
@@ -61,9 +63,9 @@ body {
 
 .nav-container {
   width: 100%;
-  max-width: 95%; /* Ou 100% se quiser esticar até a borda exata */
+  max-width: 95%; 
   margin: 0 auto;
-  padding: 0 2rem; /* Mantém uma folga elegante nas pontas */
+  padding: 0 2rem; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,9 +88,9 @@ body {
 .nav-content {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Empurra o botão pra ponta direita e os links pro centro/esquerda */
+  justify-content: space-between; 
   flex: 1;
-  margin-left: 3rem; /* Separa da logo */
+  margin-left: 3rem; 
 }
 
 .nav-menu {
@@ -126,10 +128,10 @@ body {
 }
 
 .logo-img {
-  height: 100px; /* Ajuste a altura ideal para o seu cabeçalho */
+  height: 100px; 
   width: auto;
   object-fit: contain;
-  /* Sem necessidade de mix-blend-mode! */
+  
 }
 /* LINKS DE NAVEGAÇÃO */
 .nav-menu {
@@ -154,6 +156,206 @@ body {
 
 .nav-item:hover .nav-link {
   color: #8c5d33; /* Cobre / Destaque */
+}
+
+/* --- ESTILOS DA PÁGINA SOBRE NÓS E SEÇÕES --- */
+
+/* Ajusta o deslize da tela para não cobrir o título sob a Navbar */
+.secao-pagina {
+  scroll-margin-top: 80px; 
+  padding: 80px 20px;
+  background-color: #fcfbf9;
+}
+
+/* Intercala o fundo bege claro para dar destaque visual */
+.fundo-diferente {
+  background-color: #f4efe9;
+}
+
+.container-secao {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.flex-coluna {
+  flex-direction: column;
+}
+
+.texto-secao {
+  flex: 1;
+}
+
+.subtitulo-secao {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a67c52;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.texto-secao h2, .texto-centralizado h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  color: #554d46;
+  margin-bottom: 20px;
+}
+
+.texto-secao p, .texto-centralizado p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #665e56;
+  margin-bottom: 15px;
+}
+
+.texto-centralizado {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.imagem-secao {
+  flex: 1;
+  text-align: center;
+}
+
+.img-destaque {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+ 
+  mix-blend-mode: multiply; 
+  
+
+  opacity: 0.75; 
+
+  
+  box-shadow: none; 
+}
+
+#sobre-nos {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.introducao-clinica {
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.equipe-container {
+    display: flex;
+    flex-wrap: wrap; /* Faz quebrar a linha no celular */
+    justify-content: center;
+    gap: 30px; /* Espaço entre as pessoas */
+}
+
+.membro-equipe {
+    flex: 1;
+    min-width: 280px; /* Não deixa ficar espremido */
+    max-width: 350px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.membro-equipe img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Deixa a foto redonda */
+    object-fit: cover; /* Não distorce a imagem */
+    margin-bottom: 15px;
+}
+
+.membro-equipe h3 {
+    margin: 10px 0 5px 0;
+}
+
+.membro-equipe .cargo {
+    font-weight: bold;
+    color: #007680; /* Cor de destaque da clínica */
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* --- GRID E CARDS DOS PROFISSIONAIS --- */
+.grid-profissionais {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1280px;         /* Aumentamos a área máxima para caber mais elementos */
+  margin: 0 auto;
+}
+
+
+.card-profissional {
+  background: #ffffff;
+  padding: 35px 30px;
+  border-radius: 12px;
+  
+  flex: 1 1 420px;
+  max-width: 460px;
+  
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-profissional:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.foto-perfil {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #f4efe9;
+}
+
+.card-profissional h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: #554d46;
+  margin-bottom: 5px;
+}
+
+.cargo-tag {
+  display: inline-block;
+  font-size: 20px;
+  color: #a67c52;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.card-profissional p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #665e56;
+  text-align: center;          
+  margin-top: 15px;
+}
+
+/* Responsividade para celular */
+@media (max-width: 768px) {
+  .container-secao {
+    flex-direction: column;
+    gap: 30px;
+  }
 }
 
 /* DROPDOWN MENU */
@@ -326,6 +528,7 @@ body {
   background-color: #6f4726;
 }
 
+
 @media (max-width: 600px) {
   .form-row {
     flex-direction: column;
@@ -353,15 +556,15 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url(background.png) center/cover no-repeat;
-  filter: grayscale(100%) contrast(110%);
+  background: url(imagenssite/background.png) center/cover no-repeat;
+  
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  /* Overlay em gradiente usando as novas cores terrosas */
-  background: linear-gradient(135deg, rgba(124, 110, 99, 0.9) 0%, rgba(140, 93, 51, 0.85) 100%);
+  
+  background: linear-gradient(135deg, rgba(124, 110, 99, 0.5) 0%, rgba(140, 93, 51, 0.45) 100%);
 }
 
 .hero-content {
