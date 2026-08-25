@@ -1,108 +1,118 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn = document.getElementById("menuBtn");
-  const closeBtn = document.getElementById("closeBtn");
-  const sidebar = document.getElementById("sidebar");
-  const sidebarOverlay = document.getElementById("sidebarOverlay");
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. MENU HAMBÚRGUER (ÚNICA EXECUÇÃO)
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const navContent = document.getElementById('navContent');
 
-  function openSidebar() {
-    sidebar.classList.add("active");
-    sidebarOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
+  if (hamburgerBtn && navContent) {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Impede interferências de cliques em outros elementos
+      hamburgerBtn.classList.toggle('active');
+      navContent.classList.toggle('active');
+    });
 
-  function closeSidebar() {
-    sidebar.classList.remove("active");
-    sidebarOverlay.classList.remove("active");
-    document.body.style.overflow = "";
-  }
+    // Fecha o menu mobile ao clicar em qualquer link
+    const navLinks = document.querySelectorAll('.nav-link, .dropdown-menu a, .btn-agendar');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburgerBtn.classList.remove('active');
+        navContent.classList.remove('active');
+      });
+    });
 
-  menuBtn.addEventListener("click", openSidebar);
-  closeBtn.addEventListener("click", closeSidebar);
-  sidebarOverlay.addEventListener("click", closeSidebar);
-
-  // Fechar ao clicar em qualquer link da barra lateral
-  document.querySelectorAll(".sidebar a").forEach(link => {
-    link.addEventListener("click", closeSidebar);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && sidebar.classList.contains("active")) {
-      closeSidebar();
-    }
-  });
-});
-
-//Sobre nós menu 
-document.addEventListener("DOMContentLoaded", function() {
-    // Seleciona o link do Sobre Nós
-    const dropdownTitulo = document.querySelector('.dropdown-titulo');
-    
-    if (dropdownTitulo) {
-        dropdownTitulo.addEventListener('click', function(e) {
-            e.preventDefault(); 
-        });
-    }
-});
-
-    function abrirModal() {
-      document.getElementById('modalAgendamento').style.display = 'flex';
-    }
-
-    function fecharModal() {
-      document.getElementById('modalAgendamento').style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('modalAgendamento');
-      if (event.target === modal) {
-        fecharModal();
+    // Fecha o menu se o usuário clicar fora dele
+    document.addEventListener('click', (e) => {
+      if (!navContent.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+        hamburgerBtn.classList.remove('active');
+        navContent.classList.remove('active');
       }
-    };
+    });
+  }
 
-    function enviarParaWhatsApp(event) {
-      event.preventDefault();
+  // 2. PAINEL COLAPSÁVEL DE CONTATOS (SÓ EXECUTA SE OS ELEMENTOS EXISTIREM)
+  const btnToggleContatos = document.getElementById('btnToggleContatos');
+  const btnFecharContatos = document.getElementById('btnFecharContatos');
+  const painelContatos = document.getElementById('painelContatos');
 
-      const numeroWhatsApp = "5573981394240";
+  if (btnToggleContatos && painelContatos) {
+    btnToggleContatos.addEventListener('click', () => {
+      painelContatos.classList.toggle('ativo');
+    });
+  }
+  if (btnFecharContatos && painelContatos) {
+    btnFecharContatos.addEventListener('click', () => {
+      painelContatos.classList.remove('ativo');
+    });
+  }
 
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
-      const telefone = document.getElementById('telefone').value;
-      const assunto = document.getElementById('assunto').value;
-      const mensagem = document.getElementById('mensagem').value;
+  // 3. SLIDESHOW (SEGURA ERROS DE ARQUIVOS ONDE ELE NÃO EXISTE)
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsContainer = document.getElementById('dotsContainer');
 
-      const textoMensagem = `*Novo Agendamento/Contato via Site*%0A%0A` +
-        `*Nome:* ${nome}%0A` +
-        `*E-mail:* ${email}%0A` +
-        `*Telefone:* ${telefone}%0A` +
-        `*Assunto:* ${assunto}%0A%0A` +
-        `*Mensagem:*%0A${mensagem}`;
+  if (slides.length > 0) {
+    let currentSlide = 0;
 
-      const url = `https://wa.me/${numeroWhatsApp}?text=${textoMensagem}`;
-      window.open(url, '_blank');
-
-      fecharModal();
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => gotoSlide(index));
+        dotsContainer.appendChild(dot);
+      });
     }
 
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navContent = document.getElementById('navContent');
-
-    if (hamburgerBtn && navContent) {
-      hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
-        navContent.classList.toggle('active');
-      });
-
-      // Fecha o menu ao clicar em qualquer link (incluindo o linktree)
-      const navLinks = document.querySelectorAll('.nav-link, .btn-agendar');
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          hamburgerBtn.classList.remove('active');
-          navContent.classList.remove('active');
-        });
-      });
-    } else {
-      console.error('Elementos do menu hambúrguer não foram encontrados no DOM.');
+    function gotoSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      const dots = document.querySelectorAll('.dot');
+      if (dots.length) dots[currentSlide].classList.remove('active');
+      
+      currentSlide = index;
+      
+      slides[currentSlide].classList.add('active');
+      if (dots.length) dots[currentSlide].classList.add('active');
     }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        let next = (currentSlide + 1) % slides.length;
+        gotoSlide(next);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        let prev = (currentSlide - 1 + slides.length) % slides.length;
+        gotoSlide(prev);
+      });
+    }
+
+    setInterval(() => {
+      let next = (currentSlide + 1) % slides.length;
+      gotoSlide(next);
+    }, 5000);
+  }
 });
+
+// Envio de mensagem para WhatsApp
+function enviarParaWhatsApp(e) {
+  if (e) e.preventDefault();
+  const nome = document.getElementById('nome')?.value || '';
+  const email = document.getElementById('email')?.value || '';
+  const tel = document.getElementById('telefone')?.value || '';
+  const assunto = document.getElementById('assunto')?.value || '';
+  const msg = document.getElementById('mensagem')?.value || '';
+
+  const textoMensagem = `*Novo Agendamento/Contato via Site*%0A%0A` +
+    `*Nome:* ${encodeURIComponent(nome)}%0A` +
+    `*E-mail:* ${encodeURIComponent(email)}%0A` +
+    `*Telefone:* ${encodeURIComponent(tel)}%0A` +
+    `*Assunto:* ${encodeURIComponent(assunto)}%0A%0A` +
+    `*Mensagem:*%0A${encodeURIComponent(msg)}`;
+
+  const url = `https://wa.me/5573981394240?text=${textoMensagem}`;
+  window.open(url, '_blank');
+  fecharModal();
+}

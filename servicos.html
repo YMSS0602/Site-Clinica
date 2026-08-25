@@ -1,58 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviços - Elaborar</title>
-    <link rel="stylesheet" href="clinica.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços - Elaborar</title>
+  
+  <link rel="stylesheet" href="clinica.css">
+  
+  <!-- Fonte do projeto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-<section id="servicos" class="secao-pagina fundo-diferente">
-  <div class="texto-centralizado">
-    <span class="subtitulo-secao">Nossas Especialidades</span>
-    <h2>Atendimento Humanizado & Especializado</h2>
-    <p>Oferecemos um cuidado integrado focado no bem-estar emocional, na saúde mental e no desenvolvimento humano em todas as fases da vida.</p>
-  </div>
+<body class="fundo-creme">
 
-  <div class="grid-servicos">
-    <!-- Serviço 1 -->
-    <div class="card-servico">
-      <div class="icone-servico">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+  <!-- NAVBAR UNIFICADA -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-brand">
+        <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+      </a>
+
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-content" id="navContent">
+        <nav class="nav-menu">
+          <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+          
+          <div class="nav-item has-dropdown">
+            <a href="servicos.html" class="nav-link">Serviços</a>
+            <div class="dropdown-menu">
+              <a href="servicos.html#psicoterapia">Psicoterapia</a>
+              <a href="servicos.html#psicanalise">Psicanálise</a>
+              <a href="servicos.html#psiquiatria">Psiquiatria</a>
+              <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
+              <a href="servicos.html#orientacao-parental">Orientação Parental</a>
+            </div>
+          </div>
+
+          <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
+          <a href="servicos.html" class="nav-link">Atendimento on-line</a>
+          <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contatos.html" class="nav-link">Contatos</a>
+        </nav>
+
+        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
       </div>
-      <h3>Psicologia Clínica & Psicanálise</h3>
-      <p>Espaço de escuta acolhedor e focado na singularidade do indivíduo, auxiliando no tratamento de ansiedade, depressão, traumas, conflitos relacionais e autoconhecimento.</p>
-      <a href="#" class="link-servico">Saiba mais &rarr;</a>
+    </div>
+  </header>
+
+  <section id="servicos" class="secao-pagina">
+    <div class="texto-centralizado">
+      <span class="subtitulo-secao">NOSSAS ESPECIALIDADES</span>
+      <h2>Atendimento Humanizado & Especializado</h2>
+      <p>Oferecemos um cuidado integrado focado no bem-estar emocional, na saúde mental e no desenvolvimento humano em todas as fases da vida.</p>
     </div>
 
-    <!-- Serviço 2 -->
-    <div class="card-servico">
-      <div class="icone-servico">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="grid-servicos">
+      <!-- Card 1 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+        </div>
+        <h3>Psicoterapia</h3>
+        <p>Atendimento psicológico individualizado para adolescentes e adultos, focado em demandas emocionais, relacionais e existenciais.</p>
       </div>
-      <h3>Psiquiatria Humanizada</h3>
-      <p>Avaliação e acompanhamento médico especializado no diagnóstico e tratamento de transtornos mentais, integrando intervenções farmacológicas e terapêuticas com olhar empático.</p>
-      <a href="#" class="link-servico">Saiba mais &rarr;</a>
-    </div>
 
-    <!-- Serviço 3 -->
-    <div class="card-servico">
-      <div class="icone-servico">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <!-- Card 2 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/></svg>
+        </div>
+        <h3>Psicanálise</h3>
+        <p>Espaço de escuta e acolhimento para a reflexão e elaboração de conflitos, possibilitando a construção de novos sentidos.</p>
       </div>
-      <h3>Perícia Psicológica & Jurídica</h3>
-      <p>Atuação técnica e fundamentada no Poder Judiciário em varas da Família, Cível e Infância/Juventude, emitindo laudos e pareceres com alto rigor científico e ético.</p>
-      <a href="#" class="link-servico">Saiba mais &rarr;</a>
-    </div>
 
-    <!-- Serviço 4 -->
-    <div class="card-servico">
-      <div class="icone-servico">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <!-- Card 3 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Psiquiatria</h3>
+        <p>Avaliação, diagnóstico e acompanhamento médico especializado em transtornos do humor, ansiedade, sono e outras condições psiquiátricas.</p>
       </div>
-      <h3>Avaliação Neuropsicológica & TDAH</h3>
-      <p>Investigação detalhada das funções cognitivas, emocionais e comportamentais para crianças, adolescentes e adultos, com foco em TDAH e Espectro Autista (TEAP).</p>
-      <a href="#" class="link-servico">Saiba mais &rarr;</a>
+
+      <!-- Card 4 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        </div>
+        <h3>Neuropsicologia</h3>
+        <p>Investigação detalhada das funções cognitivas (atenção, memória, linguagem), auxiliando no diagnóstico e intervenção.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>Avaliação Psicológica</h3>
+        <p>Processo individualizado de investigação do funcionamento cognitivo e emocional por meio de instrumentos científicos reconhecidos.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+        </div>
+        <h3>Cuidado no Envelhecimento</h3>
+        <p>Acompanhamento focado nas transformações da terceira idade, transições familiares, aposentadoria e sentimentos de solidão.</p>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <h3>Orientação Parental</h3>
+        <p>Suporte a pais e responsáveis no manejo de conflitos, limites e desenvolvimento emocional de crianças e adolescentes.</p>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card-servico">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9z"/></svg>
+        </div>
+        <h3>Maternidade & Primeira Infância</h3>
+        <p>Acolhimento psicológico durante a gestação e puerpério, fortalecendo o vínculo entre mãe, bebê e família.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+</body>
+</html>

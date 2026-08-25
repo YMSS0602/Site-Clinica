@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atendimento Particular - Elaborar</title>
+  
+  <link rel="stylesheet" href="clinica.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="fundo-creme">
+
+  <!-- NAVBAR PRINCIPAL -->
+<header class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo-brand">
+      <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+    </a>
+
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+<!-- Navbar Unificada -->
+    <div class="nav-content" id="navContent">
+      <nav class="nav-menu">
+        <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+
+        <div class="nav-item has-dropdown">
+          <a href="servicos.html" class="nav-link">Serviços</a>
+          <div class="dropdown-menu">
+            <a href="servicos.html#psicoterapia">Psicoterapia</a>
+            <a href="servicos.html#psicanalise">Psicanálise</a>
+            <a href="servicos.html#psiquiatria">Psiquiatria</a>
+            <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
+            <a href="servicos.html#orientacao-parental">Orientação Parental</a>
+          </div>
+        </div>
+
+        <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
+        <a href="atendimento.html" class="nav-link">Atendimento on-line</a>
+        <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contatos.html" class="nav-link">Contatos</a>
+      </nav>
+      <!-- BOTÃO DE AÇÃO -->
+      <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+
+    </div>
+  </div>
+</header>
+
+  <section id="atendimento-particular" class="secao-pagina">
+    <!-- CABEÇALHO DA SEÇÃO -->
+    <div class="texto-centralizado">
+      <span class="subtitulo-secao">MODALIDADES & CONDIÇÕES</span>
+      <h2>Atendimento Particular</h2>
+      <p>A Elaborar realiza seus atendimentos de forma particular, priorizando a escuta, a ética e o cuidado individualizado no tempo e na medida de cada pessoa.</p>
+    </div>
+
+    <!-- CARDS COM MODALIDADES E FORMAS DE PAGAMENTO -->
+    <div class="container-particular">
+      
+      <!-- CARD 1: MODALIDADES -->
+      <div class="card-particular">
+        <div class="icone-particular">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Modalidades de Acompanhamento</h3>
+        <p>Oferecemos diferentes formatos de atendimento para melhor se adequar à sua necessidade clínica e rotina:</p>
+        <ul class="lista-detalhes">
+          <li><strong>Consulta individual:</strong> Atendimento pontual ou continuado focado na demanda do paciente.</li>
+          <li><strong>Pacotes de acompanhamento:</strong> Opções de tratamento estruturado para processos terapêuticos continuados.</li>
+          <li><strong>Atendimento Presencial:</strong> Em nosso consultório no Edifício Itabuna Trade Center (Sala 509).</li>
+          <li><strong>Atendimento On-line:</strong> Modalidade disponível para Psicoterapia, Avaliação Neuropsicológica e Supervisão em Psicanálise.</li>
+        </ul>
+      </div>
+
+      <!-- CARD 2: FORMAS DE PAGAMENTO -->
+      <div class="card-particular">
+        <div class="icone-particular">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+        </div>
+        <h3>Formas de Pagamento</h3>
+        <p>Buscamos facilitar o acesso aos nossos serviços através de diferentes opções e condições de pagamento:</p>
+        <ul class="lista-detalhes">
+          <li><strong>Pix:</strong> Pagamento prático para consultas individuais e sessões avulsas.</li>
+          <li><strong>Cartão de Crédito:</strong> Aceitamos as principais bandeiras de cartão.</li>
+          <li><strong>Parcelamento no Cartão:</strong> Condição especial de parcelamento em até <strong>10 vezes</strong> para o processo de Avaliação Neuropsicológica.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- BLOCO DE INFORMAÇÕES ADICIONAIS / DUVIDAS -->
+    <div class="caixa-duvidas-particular">
+      <h3>Informações sobre Valores e Agendamento</h3>
+      <p>Para consultar valores atualizados, disponibilidade de horários ou tirar dúvidas sobre o funcionamento das modalidades presenciais e on-line, entre em contato direto com nossa equipe.</p>
+      
+      <div class="botoes-acao-particular">
+        <a href="https://wa.me/5573981394240?text=Olá!%20Gostaria%20de%20saber%20informações%20sobre%20valores%20e%20horários%20do%20atendimento%20particular." target="_blank" class="btn-particular-whatsapp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Consultar Valores via WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+</html>

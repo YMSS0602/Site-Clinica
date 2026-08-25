@@ -13,63 +13,42 @@
   <link rel="stylesheet" href="clinica.css">
 </head>
 <body>
+<header class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo-brand">
+      <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+    </a>
 
-  <!-- NAVBAR PRINCIPAL (Mesma estrutura corrigida) -->
-  <header class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo-brand">
-        <img src="imagenssite/logo.png" alt="Logo da Clínica" class="logo-img">
-      </a>
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+<!-- Navbar Unificada -->
+    <div class="nav-content" id="navContent">
+      <nav class="nav-menu">
+        <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
 
-      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir Menu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <div class="nav-content" id="navContent">
-        <nav class="nav-menu">
-          
-          <div class="nav-item has-dropdown">
-            <a href="javascript:void(0)" class="nav-link">Sobre Nós</a>
-            <div class="dropdown-menu">
-              <a href="sobre.html#a-clinica">A clínica</a>
-              <a href="sobre.html#profissionais">Profissionais</a>
-            </div>
+        <div class="nav-item has-dropdown">
+          <a href="servicos.html" class="nav-link">Serviços</a>
+          <div class="dropdown-menu">
+            <a href="servicos.html#psicoterapia">Psicoterapia</a>
+            <a href="servicos.html#psicanalise">Psicanálise</a>
+            <a href="servicos.html#psiquiatria">Psiquiatria</a>
+            <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
+            <a href="servicos.html#orientacao-parental">Orientação Parental</a>
           </div>
+        </div>
 
-          <div class="nav-item has-dropdown">
-            <a href="javascript:void(0)" class="nav-link">Serviços</a>
-            <div class="dropdown-menu">
-              <a href="servicos.html#psicoterapia">Psicoterapia</a>
-              <a href="servicos.html#psicanalise">Psicanálise</a>
-              <a href="servicos.html#psiquiatria">Psiquiatria</a>
-              <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-              <a href="servicos.html#gestantes">Psicoterapia a gestantes/puérperas</a>
-              <a href="servicos.html#idosos">Psicoterapia a idosas</a>
-              <a href="servicos.html#parentalidade">Orientação a pais</a>
-              <a href="servicos.html#supervisao">Supervisão em psicanálise</a>
-            </div>
-          </div>
+        <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
+        <a href="atendimento.html" class="nav-link">Atendimento on-line</a>
+        <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contatos.html" class="nav-link">Contatos</a>
+      </nav>
 
-          <div class="nav-item has-dropdown">
-            <a href="javascript:void(0)" class="nav-link">Serviços Online</a>
-            <div class="dropdown-menu">
-              <a href="servicos-online.html#terapia-online">Terapia on-line</a>
-              <a href="servicos-online.html#supervisao-online">Supervisão on-line</a>
-            </div>
-          </div>
-
-          <div class="nav-item"><a href="#convenios" class="nav-link">Convênios</a></div>
-          <div class="nav-item"><a href="#blog" class="nav-link">Blog</a></div>
-          <div class="nav-item">
-            <a href="https://linktr.ee/clinicaelaborar" target="_blank" rel="noopener noreferrer" class="nav-link">Contatos</a>
-          </div>
-
-        </nav>
-
-        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
-      </div>
+       <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
     </div>
-  </header>
+  </div>
+</header>
 
   <!-- CONTEÚDO DA PÁGINA SOBRE NÓS -->
   <main>
@@ -78,18 +57,16 @@
     <section id="a-clinica" class="secao-pagina">
       <div class="container-secao">
         <div class="texto-secao">
-          <span class="subtitulo-secao">Conheça o nosso espaço</span>
-          <h2>A Clínica Elaborar</h2>
-          <p>
-A Elaborar-Centro Integrado de Saúde Mental é um espaço dedicado ao
-cuidado integral da saúde mental, reunindo diferentes especialidades para
-oferecer atendimento qualificado, ético e humanizado.
-Localizada em Itabuna, Bahia, a Elaborar nasceu da compreensão de que
-cada pessoa possui uma história singular e, por isso, necessita de um cuidado
-que considere suas particularidades, necessidades, potencialidades e contexto
-de vida.
+          <span class="subtitulo-secao">Um espaço de cuidado, escuta e acolhimento </span>
+          <h2>Cuidar da saúde mental é também cuidar da história, dos vínculos e da forma singular como cada pessoa vive e se relaciona com o mundo. </h2>
+          <p>A Elaborar - Centro Integrado de Saúde Mental é um espaço dedicado ao cuidado integral da saúde mental, reunindo diferentes especialidades para oferecer atendimento qualificado, ético e humanizado. 
 
-          </p>
+Localizada em Itabuna, Bahia, a Elaborar nasceu da compreensão de que cada pessoa possui uma história singular e, por isso, necessita de um cuidado que considere suas particularidades, necessidades, potencialidades e contexto de vida. 
+
+Nossa proposta é oferecer um espaço de escuta, acolhimento, avaliação e acompanhamento, promovendo um cuidado individualizado e, quando necessário, integrado entre diferentes especialidades. 
+
+Agende sua consulta e conheça a Elaborar.
+</p>
           <p>
            Nossa proposta é oferecer um espaço de escuta, acolhimento, avaliação e
 acompanhamento, promovendo um cuidado individualizado e, quando
@@ -123,44 +100,64 @@ necessário, integrado entre diferentes especialidades.
   <div class="foto-container">
     <img src="fotospro/mill.png" alt="Foto da Profissional" class="foto-perfil">
   </div>
-  <h3>Millena Souza Mendonça</h3>
-  <span class="cargo-tag">Fundadora • Psicóloga Clínica e Perita / CRP: 03/11388</span>
-  <p>
-    Psicóloga Clínica e Jurídica, fundadora da Elaborar, com mais de 10 anos de experiência e especializações em Psicopatologia, Psicologia Jurídica e Neuropsicologia. Sua prática é orientada pela Psicanálise na escuta de adolescentes, adultos, idosos e famílias. Atua como Perita Psicóloga no Poder Judiciário (Família, Cível, Infância e Juventude) e traz do serviço público um olhar atento às vulnerabilidades, aos vínculos e à complexidade das relações humanas.
+  <h3>Millena Mendonça</h3>
+  <span class="cargo-tag">Psicóloga Clínica e Jurídica/ CRP: 03/11388</span>
+<p>
+    Psicóloga de orientação psicanalítica e Perita Judicial, com experiência no atendimento a bebês, crianças, adolescentes e adultos, acolhendo demandas de constituição subjetiva, vínculos familiares e sofrimento psíquico contemporâneo.
+    <br><br>
+    Desenvolve trabalho focado na parentalidade e no suporte à maternidade através da condução do Grupo de Habilidades Parentais, além de integrar o Foro Psicanalítico do Sul da Bahia.
+    <br><br>
+    Na área jurídica, realiza avaliações e laudos pautados no CFP e ECA. Soma ainda mais de dez anos de experiência em gestão de pessoas, desenvolvimento de equipes e cultura organizacional.
   </p>
 </div>
      
-
 <!-- Profissional 2 -->
-          <div class="card-profissional">
-            <div class="foto-container">
-              <img src="fotospro/jaq.png" alt="Foto Profissional 2" class="foto-perfil">
-            </div>
-            <h3>Jaqueline Abreu C. Rodrigues </h3>
-            <span class="cargo-tag">Psicóloga /CRP: 03/11110</span>
-            <p>Psicóloga Clínica especialista em Avaliação Psicológica, Neuropsicologia e Saúde da Mulher, com capacitação dedicada ao TDAH e ao espectro autista (TEAPi). Atua com foco em investigações cognitivas, emocionais e comportamentais em todas as faixas etárias. Une fundamentação científica rigorosa a um olhar ético e humanizado para promover qualidade de vida.</p>
-          </div>
+<div class="card-profissional">
+  <div class="foto-container">
+    <img src="fotospro/jaq.png" alt="Foto da Jaqueline Abreu" class="foto-perfil">
+  </div>
+  <h3>Jaqueline Abreu C. Rodrigues</h3>
+  <span class="cargo-tag">Psicóloga / CRP: 03/11110</span>
+  <p>
+    Psicóloga clínica especializada em Avaliação Psicológica, Neuropsicologia, Saúde da Mulher, Psicologia Hospitalar e Intervenção Terapêutica Familiar.
+    <br><br>
+    Possui formação em TDAH e capacitação em Avaliação Psicológica Infantil no Transtorno do Espectro Autista (TEAPi), utilizando a avaliação neuropsicológica como ferramenta científica para compreender o funcionamento cognitivo e emocional.
+    <br><br>
+    Sua atuação é pautada em evidências científicas, ética e cuidado humanizado, buscando compreender cada indivíduo em sua singularidade e promover qualidade de vida.
+  </p>
+</div>
 
-          <!-- Profissional 3 -->
-          <div class="card-profissional">
-            <div class="foto-container">
-              <img src="fotospro/ana.png" alt="Foto Profissional 2" class="foto-perfil">
-            </div>
-            <h3> Ana Paula</h3>
-            <span class="cargo-tag">Perita no Judiciário /CRP: 03/11106</span>
-            <p>Psicóloga Clínica e Perita Jurídica orientada pela Psicanálise, com vasta experiência na escuta de bebês, crianças, adolescentes e adultos. Desenvolve grupos terapêuticos focados na parentalidade contemporânea e maternidade, integrando o Foro Psicanalítico do Sul da Bahia. Une a prática clínica e perinatal a uma sólida bagagem de mais de 10 anos em gestão e desenvolvimento humano.</p>
-          </div>
+<!-- Profissional 3 -->
+<div class="card-profissional">
+  <div class="foto-container">
+    <img src="fotospro/ana.png" alt="Foto da Ana Paula Ferreira" class="foto-perfil">
+  </div>
+  <h3>Ana Paula Ferreira</h3>
+  <span class="cargo-tag">Psicóloga / CRP: 03/11106</span>
+  <p>
+    Psicóloga de orientação psicanalítica e Perita Judicial, com experiência no atendimento de bebês a adultos, acolhendo demandas de constituição subjetiva, vínculos familiares e sofrimento psíquico contemporâneo.
+    <br><br>
+    Desenvolve trabalho focado na parentalidade e no suporte à maternidade através da condução do Grupo de Habilidades Parentais, além de integrar o Foro Psicanalítico do Sul da Bahia.
+    <br><br>
+    Na área jurídica, realiza avaliações pautadas no CFP e ECA. Soma ainda mais de dez anos de experiência em gestão de pessoas, desenvolvimento de equipes e cultura organizacional.
+  </p>
+</div>
 
-           <!-- Profissional 4 -->
-          <div class="card-profissional">
-            <div class="foto-container">
-              <img src="fotospro/john.png" alt="Foto Profissional 1" class="foto-perfil">
-            </div>
-            <h3>Jônathan Pereira</h3>
-            <span class="cargo-tag">Médico Psiquiatra / CRM-BA:46.8533</span>
-            <p>Psiquiatra com formação pela Afya Itabuna, IPEMED e Fiocruz (foco em jovens e adolescentes). Dedica-se ao tratamento humanizado de condições como ansiedade, depressão, TDAH, traumas, vícios e transtornos complexos, oferecendo um espaço seguro para que ninguém precise enfrentar o sofrimento sozinho.</p>
-          </div>  
-
+<!-- Profissional 4 -->
+<div class="card-profissional">
+  <div class="foto-container">
+    <img src="fotospro/john.png" alt="Foto do Dr. Jônathan Pereira" class="foto-perfil">
+  </div>
+  <h3>Dr. Jônathan Pereira</h3>
+  <span class="cargo-tag">Psiquiatra / CRM-BA: 46.853</span>
+  <p>
+    Médico graduado pela Afya Itabuna, com especialização em Psiquiatria pela IPEMED/AFYA e capacitação em Psiquiatria de Jovens e Adolescentes pela Fiocruz.
+    <br><br>
+    Atua de forma integrada na avaliação, diagnóstico, tratamento e acompanhamento de diversas demandas relacionadas à saúde mental em diferentes etapas da vida.
+    <br><br>
+    Sua prática abrange o manejo de transtornos do humor, ansiedade, transtornos psicóticos, distúrbios do sono e outras condições psiquiátricas complexas.
+  </p>
+</div>
  
 <!-- </div>-->
         </div>

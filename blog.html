@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog – Clínica Elaborar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="clinica.css">
+</head>
+<body class="fundo-creme">
+
+  <!-- NAVBAR UNIFICADA -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-brand">
+        <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+      </a>
+
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-content" id="navContent">
+        <nav class="nav-menu">
+          <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+          
+          <div class="nav-item has-dropdown">
+            <a href="servicos.html" class="nav-link">Serviços</a>
+            <div class="dropdown-menu">
+              <a href="servicos.html#psicoterapia">Psicoterapia</a>
+              <a href="servicos.html#psicanalise">Psicanálise</a>
+              <a href="servicos.html#psiquiatria">Psiquiatria</a>
+              <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
+              <a href="servicos.html#orientacao-parental">Orientação Parental</a>
+            </div>
+          </div>
+
+          <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
+          <a href="atendimento.html" class="nav-link">Atendimento on-line</a>
+          <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contatos.html" class="nav-link">Contatos</a>
+        </nav>
+
+        <a href="index.html#agendamento" class="btn-agendar">AGENDAR CONSULTA</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="secao-pagina">
+    <div class="card-box">
+      <div class="admin-bar">
+        <button id="btnAdminToggle" class="btn-admin-toggle" onclick="toggleModoAdmin()">Área do Administrador</button>
+      </div>
+
+      <span class="subtitulo-secao">Artigos e Informações</span>
+      <h2 class="titulo-aba">Blog da Elaborar</h2>
+
+      <!-- Painel de escrita (Visível apenas para Administradores) -->
+      <div class="blog-form-box" id="blogFormBox">
+        <h3>Publicar novo artigo</h3>
+        <input type="text" id="postTitulo" placeholder="Título do artigo" />
+        <textarea id="postConteudo" rows="4" placeholder="Escreva o artigo aqui..."></textarea>
+        <button class="btn-publicar" onclick="salvarPost()">Publicar Artigo</button>
+      </div>
+
+      <!-- Exibição dos artigos salvos -->
+      <div id="postsContainer"></div>
+    </div>
+  </main>
+
+  <footer class="rodape-simples">
+    <p>© Elaborar – Centro Integrado de Saúde Mental.</p>
+  </footer>
+
+  <script>
+    const SENHA_ADMIN = "elaborar123"; // Defina a senha do administrador aqui
+
+    function ehAdmin() {
+      return localStorage.getItem('elaborar_is_admin') === 'true';
+    }
+
+    function atualizarInterfaceAdmin() {
+      const formBox = document.getElementById('blogFormBox');
+      const btnToggle = document.getElementById('btnAdminToggle');
+
+      if (ehAdmin()) {
+        formBox.classList.add('ativo');
+        btnToggle.textContent = 'Sair do Modo Admin';
+      } else {
+        formBox.classList.remove('ativo');
+        btnToggle.textContent = 'Área do Administrador';
+      }
+      carregarPosts();
+    }
+
+    function toggleModoAdmin() {
+      if (ehAdmin()) {
+        localStorage.setItem('elaborar_is_admin', 'false');
+        alert('Você saiu do modo administrador.');
+      } else {
+        const senha = prompt('Digite a senha de administrador para publicar artigos:');
+        if (senha === SENHA_ADMIN) {
+          localStorage.setItem('elaborar_is_admin', 'true');
+          alert('Autenticado com sucesso como Administrador!');
+        } else if (senha !== null) {
+          alert('Senha incorreta! Acesso negado.');
+        }
+      }
+      atualizarInterfaceAdmin();
+    }
+
+    function carregarPosts() {
+      const posts = JSON.parse(localStorage.getItem('elaborar_posts')) || [];
+      const container = document.getElementById('postsContainer');
+      container.innerHTML = '';
+
+      if (posts.length === 0) {
+        container.innerHTML = '<p style="color: #665e56;">Nenhum artigo publicado ainda.</p>';
+        return;
+      }
+
+      const adminAtivo = ehAdmin();
+
+      posts.forEach((post, index) => {
+        const postDiv = document.createElement('div');
+        postDiv.className = 'post-card';
+        
+        let botaoDeletar = '';
+        if (adminAtivo) {
+          botaoDeletar = `
+            <div class="post-acoes">
+              <button class="btn-deletar" onclick="excluirPost(${index})">Excluir Artigo</button>
+            </div>
+          `;
+        }
+
+        postDiv.innerHTML = `
+          <h3>${post.titulo}</h3>
+          <div class="post-meta">Publicado em: ${post.data}</div>
+          <p>${post.conteudo}</p>
+          ${botaoDeletar}
+        `;
+        container.appendChild(postDiv);
+      });
+    }
+
+    function salvarPost() {
+      if (!ehAdmin()) {
+        alert('Apenas administradores podem publicar artigos!');
+        return;
+      }
+
+      const titulo = document.getElementById('postTitulo').value;
+      const conteudo = document.getElementById('postConteudo').value;
+
+      if (!titulo || !conteudo) {
+        alert('Por favor, preencha o título e o conteúdo do artigo!');
+        return;
+      }
+
+      const novoPost = {
+        titulo,
+        conteudo,
+        data: new Date().toLocaleDateString('pt-BR')
+      };
+
+      const posts = JSON.parse(localStorage.getItem('elaborar_posts')) || [];
+      posts.unshift(novoPost);
+      localStorage.setItem('elaborar_posts', JSON.stringify(posts));
+
+      document.getElementById('postTitulo').value = '';
+      document.getElementById('postConteudo').value = '';
+      carregarPosts();
+    }
+
+    function excluirPost(index) {
+      if (!ehAdmin()) return;
+      
+      if (confirm('Deseja realmente excluir este artigo?')) {
+        const posts = JSON.parse(localStorage.getItem('elaborar_posts')) || [];
+        posts.splice(index, 1);
+        localStorage.setItem('elaborar_posts', JSON.stringify(posts));
+        carregarPosts();
+      }
+    }
+
+    document.getElementById('hamburgerBtn').addEventListener('click', () => {
+      document.getElementById('navContent').classList.toggle('active');
+    });
+
+    document.addEventListener('DOMContentLoaded', atualizarInterfaceAdmin);
+  </script>
+</body>
+</html>

@@ -15,75 +15,39 @@
 <!-- NAVBAR PRINCIPAL -->
 <header class="navbar">
   <div class="nav-container">
-    
-    <!-- LOGO -->
     <a href="index.html" class="logo-brand">
-      <img src="imagenssite/logo.png" alt="Logo da Clínica" class="logo-img">
+      <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
     </a>
 
-    <!-- BOTÃO HAMBÚRGUER (Aparece no mobile) -->
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
-
-    <!-- CONTEÚDO DO MENU (Links + Botão) -->
+<!-- Navbar Unificada -->
     <div class="nav-content" id="navContent">
       <nav class="nav-menu">
-        
-        <!-- 1. Menu SOBRE NÓS -->
-        <div class="nav-item has-dropdown">
-          <a href="javascript:void(0)" class="nav-link">Sobre Nós</a>
-          <div class="dropdown-menu">
-            <a href="sobre.html#a-clinica">A clínica</a>
-            <a href="sobre.html#profissionais">Profissionais</a>
-          </div>
-        </div>
+        <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
 
-        <!-- 2. Menu SERVIÇOS -->
         <div class="nav-item has-dropdown">
-          <a href="javascript:void(0)" class="nav-link">Serviços</a>
+          <a href="servicos.html" class="nav-link">Serviços</a>
           <div class="dropdown-menu">
             <a href="servicos.html#psicoterapia">Psicoterapia</a>
             <a href="servicos.html#psicanalise">Psicanálise</a>
             <a href="servicos.html#psiquiatria">Psiquiatria</a>
             <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-            <a href="servicos.html#gestantes">Psicoterapia a gestantes/puérperas</a>
-            <a href="servicos.html#idosos">Psicoterapia a idosas</a>
-            <a href="servicos.html#parentalidade">Orientação a pais</a>
-            <a href="servicos.html#supervisao">Supervisão em psicanálise</a>
+            <a href="servicos.html#orientacao-parental">Orientação Parental</a>
           </div>
         </div>
 
-        <!-- 3. Menu SERVIÇOS ONLINE -->
-        <div class="nav-item has-dropdown">
-          <a href="javascript:void(0)" class="nav-link">Serviços Online</a>
-          <div class="dropdown-menu">
-            <a href="servicos-online.html#terapia-online">Terapia on-line</a>
-            <a href="servicos-online.html#supervisao-online">Supervisão on-line</a>
-          </div>
-        </div>
-
-        <!-- 4. OUTROS LINKS -->
-        <div class="nav-item">
-          <a href="#convenios" class="nav-link">Convênios</a>
-        </div>
-        
-        <div class="nav-item">
-          <a href="#blog" class="nav-link">Blog</a>
-        </div>
-
-        <div class="nav-item">
-          <a href="https://linktr.ee/clinicaelaborar" target="_blank" rel="noopener noreferrer" class="nav-link">Contatos</a>
-        </div>
-
+        <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
+        <a href="atendimento.html" class="nav-link">Atendimento on-line</a>
+        <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contatos.html" class="nav-link">Contatos</a>
       </nav>
-
       <!-- BOTÃO DE AÇÃO -->
       <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
-    </div>
 
+    </div>
   </div>
 </header>
   <!-- HERO SECTION -->
@@ -103,7 +67,7 @@
       <span class="close-btn" onclick="fecharModal()">&times;</span>
       
       <h2>Agendar Consulta</h2>
-      <p>Preencha os dados abaixo para iniciar o atendimento pelo WhatsApp.</p>
+      <p>Entre em contato com a Elaborar para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
 
       <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
         <div class="form-row">
@@ -164,30 +128,6 @@
       fecharModal();
     }
   </script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navContent = document.getElementById('navContent');
-
-    if (hamburgerBtn && navContent) {
-      hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
-        navContent.classList.toggle('active');
-      });
-
-      // Fecha o menu ao clicar em qualquer link (incluindo o linktree)
-      const navLinks = document.querySelectorAll('.nav-link, .btn-agendar');
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          hamburgerBtn.classList.remove('active');
-          navContent.classList.remove('active');
-        });
-      });
-    } else {
-      console.error('Elementos do menu hambúrguer não foram encontrados no DOM.');
-    }
-  });
-</script>
 </body>
 </html>
 .

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contatos – Clínica Elaborar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="clinica.css">
+</head>
+<body class="fundo-creme">
+
+  <!-- NAVBAR UNIFICADA -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-brand">
+        <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+      </a>
+
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-content" id="navContent">
+        <nav class="nav-menu">
+          <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+          
+          <div class="nav-item has-dropdown">
+            <a href="servicos.html" class="nav-link">Serviços</a>
+            <div class="dropdown-menu">
+              <a href="servicos.html#psicoterapia">Psicoterapia</a>
+              <a href="servicos.html#psicanalise">Psicanálise</a>
+              <a href="servicos.html#psiquiatria">Psiquiatria</a>
+              <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
+              <a href="servicos.html#orientacao-parental">Orientação Parental</a>
+            </div>
+          </div>
+
+          <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
+          <a href="atendimento.html" class="nav-link">Atendimento on-line</a>
+          <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contatos.html" class="nav-link">Contatos</a>
+        </nav>
+
+        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="secao-pagina">
+    <div class="card-box">
+      <span class="subtitulo-secao">Fale Conosco</span>
+      <h2 class="titulo-aba">Informações de Contato e Localização</h2>
+      <p>Entre em contato conosco para tirar dúvidas, solicitar orientações ou agendar seu atendimento.</p>
+
+      <div class="grid-contatos">
+        <div class="card-contato-item">
+          <h3>📍 Endereço</h3>
+          <p>Av. Princesa Isabel, nº 395 – Ed. Itabuna Trade Center, Sala 509<br>Itabuna - BA</p>
+        </div>
+
+        <div class="card-contato-item">
+          <h3>📱 Telefone / WhatsApp</h3>
+          <p>(73) 9 8139-4240</p>
+        </div>
+
+        <div class="card-contato-item">
+          <h3>🕒 Horário de Funcionamento</h3>
+          <p>Segunda à Sexta-feira: 08h00 às 19h00<br>Sábados: 08h00 às 12h00</p>
+        </div>
+      </div>
+
+      <!-- SEÇÃO ATENDIMENTO PARTICULAR -->
+      <div class="bloco-particular">
+        <h3>Atendimento Particular e Reembolso</h3>
+        <p>A Clínica Elaborar realiza atendimentos exclusivamente na modalidade <strong>particular</strong>. Fornecemos toda a documentação (recibos e laudos) para que você possa solicitar o reembolso junto ao seu plano de saúde.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="rodape-simples">
+    <p>© Elaborar – Centro Integrado de Saúde Mental.</p>
+  </footer>
+
+  <a href="https://wa.me/5573981394240" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+
+  <script>
+    document.getElementById('hamburgerBtn').addEventListener('click', () => {
+      document.getElementById('navContent').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
