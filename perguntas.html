@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="clinica.css">
+    <script src="clinica.js"></script>
   </head>
   <body>
 <!-- NAVBAR PRINCIPAL -->
@@ -38,11 +39,11 @@
           </div>
         </div>
 
-        <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
-        <a href="servicos.html#atendimento-on-line" class="nav-link">Atendimento on-line</a>
+        <a href="sobre.html#profissionais" class="nav-link">Profissionais</a>
+        <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
         <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
         <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contatos.html" class="nav-link">Contatos</a>
+        <a href="contatos.html" class="nav-link">Fale conosco</a>
       </nav>
       <!-- BOTÃO DE AÇÃO -->
       <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -113,6 +114,31 @@
 É possível realizar o pagamento por Pix ou cartão de crédito, inclusive com possibilidade de parcelamento no cartão em até 10 vezes na avaliação neuropsicológica.</p>
             </div>
         </details>
+ 
+        <!-- MODAL DE AGENDAMENTO -->
+  <div id="modalAgendamento" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      
+      <h2>Agendar Consulta</h2>
+      <p>Entre em contato com a Elaborar para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
 
+      <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
+        <div class="form-row">
+          <input type="text" id="nome" placeholder="Nome" required />
+          <input type="email" id="email" placeholder="E-mail" required />
+        </div>
+        
+        <div class="form-row">
+          <input type="tel" id="telefone" placeholder="Telefone / WhatsApp" required />
+          <input type="text" id="assunto" placeholder="Assunto" required />
+        </div>
+
+        <textarea id="mensagem" rows="4" placeholder="Descreva melhor suas dúvidas ou deixe-nos uma sugestão!" required></textarea>
+
+        <button type="submit" class="btn-submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
     </div>
 </section>

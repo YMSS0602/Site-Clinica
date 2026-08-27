@@ -6,11 +6,13 @@
   <title>Serviços - Elaborar</title>
   
   <link rel="stylesheet" href="clinica.css">
+  <script src="clinica.js"></script>
   
   <!-- Fonte do projeto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body class="fundo-creme">
 
@@ -37,14 +39,16 @@
               <a href="servicos.html#psiquiatria">Psiquiatria</a>
               <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
               <a href="servicos.html#orientacao-parental">Orientação Parental</a>
+              <a href="servicos.html#supervisao">Supervisão em Psicanálise</a>
+              <a href="servicos.html#nr1">NR-1 e Saúde Mental</a>
             </div>
           </div>
 
-          <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
-          <a href="servicos.html" class="nav-link">Atendimento on-line</a>
+          <a href="sobre.html#profissionais" class="nav-link">Profissionais</a>
+          <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
           <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
           <a href="blog.html" class="nav-link">Blog</a>
-          <a href="contatos.html" class="nav-link">Contatos</a>
+          <a href="contatos.html" class="nav-link">Fale conosco</a>
         </nav>
 
         <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -60,79 +64,227 @@
     </div>
 
     <div class="grid-servicos">
-      <!-- Card 1 -->
-      <div class="card-servico">
+      <!-- Card 1: Psicoterapia -->
+      <div class="card-servico" id="psicoterapia" onclick="abrirModalServico('detalhe-psicoterapia')">
         <div class="icone-servico">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
         </div>
         <h3>Psicoterapia</h3>
         <p>Atendimento psicológico individualizado para adolescentes e adultos, focado em demandas emocionais, relacionais e existenciais.</p>
+
       </div>
 
-      <!-- Card 2 -->
-      <div class="card-servico">
+      <!-- Card 2: Psicanálise -->
+      <div class="card-servico" id="psicanalise" onclick="abrirModalServico('detalhe-psicanalise')  ">
         <div class="icone-servico">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/></svg>
         </div>
         <h3>Psicanálise</h3>
         <p>Espaço de escuta e acolhimento para a reflexão e elaboração de conflitos, possibilitando a construção de novos sentidos.</p>
+        
       </div>
 
-      <!-- Card 3 -->
-      <div class="card-servico">
+      <!-- Card 3: Psiquiatria -->
+      <div class="card-servico" id="psiquiatria" onclick="abrirModalServico('detalhe-psiquiatria')">
         <div class="icone-servico">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3>Psiquiatria</h3>
         <p>Avaliação, diagnóstico e acompanhamento médico especializado em transtornos do humor, ansiedade, sono e outras condições psiquiátricas.</p>
+       
       </div>
 
-      <!-- Card 4 -->
-      <div class="card-servico">
+      <!-- Card 4: Neuropsicologia -->
+      <div class="card-servico" id="avaliacao" onclick="abrirModalServico('detalhe-neuropsicologia')">
         <div class="icone-servico">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
         </div>
         <h3>Neuropsicologia</h3>
         <p>Investigação detalhada das funções cognitivas (atenção, memória, linguagem), auxiliando no diagnóstico e intervenção.</p>
+   
       </div>
 
-      <!-- Card 5 -->
-      <div class="card-servico">
-        <div class="icone-servico">
+      <!-- Card 5: Avaliação Psicológica -->
+      <div class="card-servico" id="avaliacao-psicologica" onclick="abrirModalServico('detalhe-avaliacao')">
+        <div class="icone-servico"> 
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         </div>
         <h3>Avaliação Psicológica</h3>
         <p>Processo individualizado de investigação do funcionamento cognitivo e emocional por meio de instrumentos científicos reconhecidos.</p>
+       
       </div>
 
-      <!-- Card 6 -->
-      <div class="card-servico">
+      <!-- Card 6: Cuidado no Envelhecimento -->
+      <div class="card-servico" id="cuidado-envelhecimento" onclick="abrirModalServico('detalhe-envelhecimento')">
         <div class="icone-servico">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
         </div>
         <h3>Cuidado no Envelhecimento</h3>
         <p>Acompanhamento focado nas transformações da terceira idade, transições familiares, aposentadoria e sentimentos de solidão.</p>
+       
       </div>
 
-      <!-- Card 7 -->
-      <div class="card-servico">
+      <!-- Card 7: Orientação Parental -->
+      <div class="card-servico" id="orientacao-parental" onclick="abrirModalServico('detalhe-orientacao')">
         <div class="icone-servico">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
         </div>
         <h3>Orientação Parental</h3>
         <p>Suporte a pais e responsáveis no manejo de conflitos, limites e desenvolvimento emocional de crianças e adolescentes.</p>
+        
       </div>
 
-      <!-- Card 8 -->
-      <div class="card-servico">
+      <!-- Card 8: Maternidade & Primeira Infância -->
+      <div class="card-servico" id="maternidade-primeira-infancia" onclick="abrirModalServico('detalhe-maternidade')">
         <div class="icone-servico">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9z"/></svg>
         </div>
         <h3>Maternidade & Primeira Infância</h3>
         <p>Acolhimento psicológico durante a gestação e puerpério, fortalecendo o vínculo entre mãe, bebê e família.</p>
+        
+      </div>
+
+      <!-- Card 9: Supervisão em Psicanálise -->
+      <div class="card-servico" id="supervisao" onclick="abrirModalServico('detalhe-supervisao')">
+        <div class="icone-servico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+        </div>
+        <h3>Supervisão em Psicanálise</h3>
+        <p>Espaço de orientação e aprimoramento técnico-teórico voltado a profissionais e estudantes de Psicologia e Psicanálise.</p>
+        
+      </div>
+
+      <!-- Card 10: NR-1 e Saúde Mental -->
+      <div class="card-servico" id="nr1" onclick="abrirModalServico('detalhe-nr1')">
+        <div class="icone-servico"> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>NR-1 e Saúde Mental</h3>
+        <p>Mapeamento, prevenção e diagnóstico de fatores de risco psicossocial no ambiente corporativo, em conformidade com a NR-1.</p>
+      
       </div>
     </div>
   </section>
 
+  <!-- ESTRUTURA DO MODAL -->
+  <div id="modalServico" class="modal-servico-overlay" onclick="fecharModalServicoFora(event)">
+    <div class="modal-servico-conteudo">
+      <button class="modal-fechar" onclick="fecharModalServico()">&times;</button>
+      <div id="modalServicoCorpo"></div>
+    </div>
+  </div>
+
+  <!-- CONTEÚDOS COMPLETOS DOS TEXTOS PARA O MODAL -->
+  <div style="display: none;">
+    
+    <div id="detalhe-psicoterapia">
+      <h3>Psicoterapia</h3>
+      <p>Atendimento psicológico individualizado para adolescentes e adultos, destinado ao acompanhamento de diferentes demandas emocionais, relacionais e existenciais.</p>
+      <p>A psicoterapia oferece um espaço protegido de escuta e reflexão, favorecendo a compreensão das experiências vividas, dos conflitos, dos sentimentos e das formas de relacionamento, possibilitando a construção de novos caminhos.</p>
+      <p>O processo é conduzido de forma individualizada, considerando a história e as necessidades de cada pessoa.</p>
+    </div>
+
+    <div id="detalhe-psicanalise">
+      <h3>Psicanálise</h3>
+      <p>A Psicanálise oferece um espaço de escuta e acolhimento no qual a pessoa pode falar sobre suas experiências, sentimentos, conflitos, relações e questões que atravessam sua história.</p>
+      <p>Por meio da palavra e da escuta psicanalítica, busca-se favorecer a elaboração de conflitos e experiências que podem estar produzindo sofrimento, possibilitando ao sujeito construir novos sentidos para aquilo que vivencia.</p>
+      <p>O processo psicanalítico respeita o tempo e a singularidade de cada pessoa, considerando sua história, seus vínculos e sua forma particular de se relacionar consigo mesma e com o mundo.</p>
+    </div>
+
+    <div id="detalhe-psiquiatria">
+      <h3>Psiquiatria</h3>
+      <p>A Psiquiatria é a especialidade médica dedicada à avaliação, diagnóstico, tratamento e acompanhamento de questões relacionadas à saúde mental.</p>
+      <p>Na Elaborar, o atendimento psiquiátrico pode, quando pertinente, ser articulado ao acompanhamento psicológico e neuropsicológico, favorecendo uma abordagem integrada e ampliando as possibilidades de cuidado.</p>
+      <h4>Principais demandas acompanhadas</h4>
+      <ul class="lista-tags-demandas">
+        <li>Ansiedade e pânico</li>
+        <li>Depressão</li>
+        <li>Transtorno de Estresse Pós-Traumático – TEPT</li>
+        <li>Transtornos por uso de substâncias</li>
+        <li>Manejo de dor crônica</li>
+        <li>Insônia e distúrbios do sono</li>
+        <li>Transtorno Bipolar</li>
+        <li>Transtorno Obsessivo-Compulsivo – TOC</li>
+        <li>Esquizofrenia e outros transtornos psicóticos</li>
+        <li>Transtornos alimentares</li>
+        <li>Transtorno de Déficit de Atenção e Hiperatividade – TDAH</li>
+        <li>Burnout e esgotamento profissional</li>
+        <li>Transtornos de personalidade</li>
+        <li>Demências e alterações de comportamento em idosos</li>
+        <li>Transtorno do Espectro Autista – TEA em adultos</li>
+      </ul>
+    </div>
+
+    <div id="detalhe-neuropsicologia">
+      <h3>Neuropsicologia</h3>
+      <p>A Neuropsicologia investiga a relação entre o funcionamento cerebral e aspectos cognitivos, emocionais e comportamentais.</p>
+      <p>A avaliação neuropsicológica possibilita uma investigação detalhada de funções como atenção, memória, linguagem, funções executivas, percepção e aprendizagem, contribuindo para a compreensão do funcionamento cognitivo e para o planejamento de estratégias de acompanhamento e intervenção.</p>
+      <p>O processo é realizado de maneira individualizada, considerando a história de vida, o contexto e as necessidades específicas de cada pessoa.</p>
+    </div>
+
+    <div id="detalhe-avaliacao">
+      <h3>Avaliação psicológica</h3>
+      <p>A avaliação psicológica é um processo de investigação do funcionamento psicológico, considerando aspectos cognitivos, emocionais e comportamentais.</p>
+      <p>Na Elaborar, a avaliação é realizada de forma individualizada, com base em instrumentos e procedimentos reconhecidos pela Psicologia e considerando as características e necessidades de cada pessoa.</p>
+    </div>
+
+    <div id="detalhe-envelhecimento">
+      <h3>Cuidado psicológico no envelhecimento</h3>
+      <p>A psicoterapia com pessoas idosas oferece um espaço de escuta, acolhimento e cuidado diante das transformações próprias do processo de envelhecimento.</p>
+      <p>O acompanhamento psicológico pode auxiliar na elaboração de mudanças, perdas, transições familiares, aposentadoria, alterações na rotina, relacionamentos, sentimentos de solidão e outras questões que possam repercutir na saúde emocional.</p>
+    </div>
+
+    <div id="detalhe-orientacao">
+      <h3>Orientação parental</h3>
+      <p>A orientação parental oferece suporte aos responsáveis diante dos desafios relacionados ao desenvolvimento emocional e comportamental de crianças e adolescentes.</p>
+      <p>O trabalho busca compreender as situações vivenciadas pela família e auxiliar os pais na construção de estratégias de comunicação, estabelecimento de limites, manejo de conflitos e fortalecimento dos vínculos familiares.</p>
+      <p>Mais do que oferecer respostas prontas, a orientação busca favorecer uma compreensão mais ampla das necessidades da criança ou do adolescente e das relações que se estabelecem no contexto familiar.</p>
+    </div>
+
+    <div id="detalhe-maternidade">
+      <h3>Psicologia na gestação, puerpério e primeira infância</h3>
+      <p>Acolhimento e acompanhamento psicológico durante a gestação, o puerpério e os primeiros momentos da vida do bebê, considerando as transformações emocionais, relacionais e familiares próprias desse período.</p>
+      <p>O acompanhamento busca oferecer um espaço de escuta e cuidado para gestantes, puérperas e famílias, favorecendo a construção do vínculo entre mãe, bebê e demais cuidadores, além de auxiliar na elaboração das mudanças decorrentes da parentalidade.</p>
+      <p>O trabalho também contempla situações que podem gerar sofrimento ou insegurança, como dificuldades na adaptação à maternidade, alterações emocionais no pós-parto, desafios na amamentação, preocupações relacionadas ao desenvolvimento do bebê e questões envolvendo a relação mãe-bebê.</p>
+    </div>
+
+    <div id="detalhe-supervisao">
+      <h3>Supervisão em Psicanálise</h3>
+      <p>A supervisão em Psicanálise é destinada a psicólogos em formação ou atuação clínica que desejam aprofundar sua prática e sua compreensão dos fenômenos presentes no trabalho analítico.</p>
+      <p>O espaço de supervisão possibilita a discussão cuidadosa de casos clínicos, considerando aspectos da escuta, manejo, transferência, contratransferência, direção do tratamento e questões éticas relacionadas à prática profissional.</p>
+      <p>Trata-se de um espaço de reflexão e construção do fazer clínico, no qual a experiência profissional pode ser articulada aos fundamentos teóricos da Psicanálise.</p>
+    </div>
+
+    <div id="detalhe-nr1">
+      <h3>NR-1 e Saúde Mental – Avaliação de Risco Psicossocial</h3>
+      <p>Avaliação relacionada aos fatores psicossociais no contexto do trabalho, considerando aspectos que podem repercutir na saúde mental dos trabalhadores.</p>
+      <p>O serviço busca contribuir para a identificação e compreensão dos fatores psicossociais relacionados ao ambiente laboral, oferecendo subsídios para ações de cuidado e prevenção em saúde mental.</p>
+    </div>
+</div>
+ <!-- MODAL DE AGENDAMENTO -->
+  <div id="modalAgendamento" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      
+      <h2>Agendar Consulta</h2>
+      <p>Entre em contato com a Elaborar para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
+
+      <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
+        <div class="form-row">
+          <input type="text" id="nome" placeholder="Nome" required />
+          <input type="email" id="email" placeholder="E-mail" required />
+        </div>
+        
+        <div class="form-row">
+          <input type="tel" id="telefone" placeholder="Telefone / WhatsApp" required />
+          <input type="text" id="assunto" placeholder="Assunto" required />
+        </div>
+
+        <textarea id="mensagem" rows="4" placeholder="Descreva melhor suas dúvidas ou deixe-nos uma sugestão!" required></textarea>
+
+        <button type="submit" class="btn-submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

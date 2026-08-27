@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <script src="clinica.js"></script>
     <link rel="stylesheet" href="clinica.css">
   </head>
   <body>
@@ -38,11 +38,11 @@
           </div>
         </div>
 
-        <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
-        <a href="atendimento.html" class="nav-link">Atendimento on-line</a>
+        <a href="profissionais.html" class="nav-link">Profissionais</a>
+        <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
         <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
         <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contatos.html" class="nav-link">Contatos</a>
+        <a href="contatos.html" class="nav-link">Fale conosco</a>
       </nav>
       <!-- BOTÃO DE AÇÃO -->
       <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -50,14 +50,73 @@
     </div>
   </div>
 </header>
-  <!-- HERO SECTION -->
+<!-- HERO SECTION / SLIDESHOW -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+    <div class="slideshow-container">
+      
+      <!-- Slide 1: Psicanálise -->
+      <div class="slide active">
+        <img src="imagenssite/poltro.png" alt="Atendimento em Psicanálise" class="img-slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-conteudo">
+          <span class="badge-servico">Especialidade</span>
+          <h2>Psicanálise</h2>
+          <p>Espaço de escuta e acolhimento no qual a pessoa pode falar sobre suas experiências, sentimentos, conflitos, relações e questões que atravessam sua história.</p>
+          <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+        </div>
+      </div>
 
-    <div class="hero-content">
-      <h1>Um espaço seguro para Elaborar e Transformar</h1>
-      <p>Acolher o que se vive. Compreender o que se sente. Elaborar novos caminhos.</p>
+      <!-- Slide 2: Psicoterapia -->
+      <div class="slide">
+        <img src="imagenssite/psico.png" alt="Sessão de Psicoterapia" class="img-slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-conteudo">
+          <span class="badge-servico">Acolhimento</span>
+          <h2>Psicoterapia</h2>
+          <p>Atendimento psicológico individualizado para adolescentes e adultos, destinado ao acompanhamento de diferentes demandas emocionais, relacionais e existenciais. </p>
+          <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+        </div>
+      </div>
+
+      <!-- Slide 3: Avaliação Neuropsicológica -->
+      <div class="slide">
+        <img src="imagenssite/psicologia.png" alt="Avaliação Neuropsicológica" class="img-slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-conteudo">
+          <span class="badge-servico">Diagnóstico</span>
+          <h2>Avaliação Neuropsicológica</h2>
+          <p>Investigação detalhada de funções como atenção, memória, linguagem, funções executivas, percepção e aprendizagem, contribuindo para a compreensão do funcionamento cognitivo e para o planejamento de estratégias de acompanhamento e intervenção.</p>
+          <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+        </div>
+      </div>
+ 
+      <!--Slide 4: -->
+      <div class="slide">
+        <img src="imagenssite/avaliacao.png" alt="Atendimento em Psicanálise" class="img-slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-conteudo">
+          <span class="badge-servico">Ocupacional</span>
+          <h2>Avaliação Psicológica</h2>
+          <p>Processo de investigação do funcionamento psicológico, considerando aspectos cognitivos, emocionais e comportamentais.</p>
+          <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+        </div>
+      </div>
+
+      <!--Slide 5: -->
+      <div class="slide">
+        <img src="imagenssite/psiquiatria.png" alt="Atendimento em Psiquiatria" class="img-slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-conteudo">
+          <span class="badge-servico">Ocupacional</span>
+          <h2>Psiquiatria</h2>
+          <p>Especialidade médica dedicada à avaliação, diagnóstico, tratamento e acompanhamento de questões relacionadas à saúde mental.</p>
+          <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+        </div>
+      </div>
+     
+      <!-- Indicadores (Pontos) -->
+      <div class="dots-container" id="dotsContainer"></div>
+
     </div>
   </section>
 
@@ -86,48 +145,9 @@
       </form>
     </div>
   </div>
-
-  <!-- JAVASCRIPT -->
-  <script>
-    function abrirModal() {
-      document.getElementById('modalAgendamento').style.display = 'flex';
-    }
-
-    function fecharModal() {
-      document.getElementById('modalAgendamento').style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('modalAgendamento');
-      if (event.target === modal) {
-        fecharModal();
-      }
-    };
-
-    function enviarParaWhatsApp(event) {
-      event.preventDefault();
-
-      const numeroWhatsApp = "5573981394240";
-
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
-      const telefone = document.getElementById('telefone').value;
-      const assunto = document.getElementById('assunto').value;
-      const mensagem = document.getElementById('mensagem').value;
-
-      const textoMensagem = `*Novo Agendamento/Contato via Site*%0A%0A` +
-        `*Nome:* ${nome}%0A` +
-        `*E-mail:* ${email}%0A` +
-        `*Telefone:* ${telefone}%0A` +
-        `*Assunto:* ${assunto}%0A%0A` +
-        `*Mensagem:*%0A${mensagem}`;
-
-      const url = `https://wa.me/${numeroWhatsApp}?text=${textoMensagem}`;
-      window.open(url, '_blank');
-
-      fecharModal();
-    }
-  </script>
+  <a href="https://wa.me/5573981394240" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
 </body>
 </html>
-.
+

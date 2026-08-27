@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atendimento Particular - Elaborar</title>
-  
+  <script src="clinica.js"></script>
   <link rel="stylesheet" href="clinica.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,11 +38,11 @@
           </div>
         </div>
 
-        <a href="sobre.html#profissionais" class="nav-link">Sobre a Equipe</a>
-        <a href="atendimento.html" class="nav-link">Atendimento on-line</a>
+        <a href="profissionais.html" class="nav-link">Profissionais</a>
+        <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
         <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
         <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contatos.html" class="nav-link">Contatos</a>
+        <a href="contatos.html" class="nav-link">Fale conosco</a>
       </nav>
       <!-- BOTÃO DE AÇÃO -->
       <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -56,7 +56,7 @@
     <div class="texto-centralizado">
       <span class="subtitulo-secao">MODALIDADES & CONDIÇÕES</span>
       <h2>Atendimento Particular</h2>
-      <p>A Elaborar realiza seus atendimentos de forma particular, priorizando a escuta, a ética e o cuidado individualizado no tempo e na medida de cada pessoa.</p>
+      <p>A Elaborar também oferece modalidades de atendimento on-line, ampliando as possibilidades de acesso ao cuidado em saúde mental.</p>
     </div>
 
     <!-- CARDS COM MODALIDADES E FORMAS DE PAGAMENTO -->
@@ -67,13 +67,14 @@
         <div class="icone-particular">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3>Modalidades de Acompanhamento</h3>
-        <p>Oferecemos diferentes formatos de atendimento para melhor se adequar à sua necessidade clínica e rotina:</p>
+        <h3>Modalidades de Atendimento</h3>
+        <p>Oferecemos diferentes formatos de atendimento para melhor se adequar à sua necessidade clínica e rotina.</p>
         <ul class="lista-detalhes">
           <li><strong>Consulta individual:</strong> Atendimento pontual ou continuado focado na demanda do paciente.</li>
           <li><strong>Pacotes de acompanhamento:</strong> Opções de tratamento estruturado para processos terapêuticos continuados.</li>
           <li><strong>Atendimento Presencial:</strong> Em nosso consultório no Edifício Itabuna Trade Center (Sala 509).</li>
           <li><strong>Atendimento On-line:</strong> Modalidade disponível para Psicoterapia, Avaliação Neuropsicológica e Supervisão em Psicanálise.</li>
+      
         </ul>
       </div>
 
@@ -105,8 +106,32 @@
         </a>
       </div>
     </div>
+ <!-- MODAL DE AGENDAMENTO -->
+  <div id="modalAgendamento" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      
+      <h2>Agendar Consulta</h2>
+      <p>Entre em contato com a Elaborar para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
 
+      <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
+        <div class="form-row">
+          <input type="text" id="nome" placeholder="Nome" required />
+          <input type="email" id="email" placeholder="E-mail" required />
+        </div>
+        
+        <div class="form-row">
+          <input type="tel" id="telefone" placeholder="Telefone / WhatsApp" required />
+          <input type="text" id="assunto" placeholder="Assunto" required />
+        </div>
+
+        <textarea id="mensagem" rows="4" placeholder="Descreva melhor suas dúvidas ou deixe-nos uma sugestão!" required></textarea>
+
+        <button type="submit" class="btn-submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
   </section>
 
-</body>
+</body>   
 </html>

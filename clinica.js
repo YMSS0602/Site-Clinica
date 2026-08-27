@@ -1,34 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. MENU HAMBÚRGUER (ÚNICA EXECUÇÃO)
+  // Menu Hambúrguer Unificado
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const navContent = document.getElementById('navContent');
 
   if (hamburgerBtn && navContent) {
     hamburgerBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Impede interferências de cliques em outros elementos
+      e.stopPropagation();
+      hamburgerBtn.classList.toggle('ativo');
+      navContent.classList.toggle('ativo');
       hamburgerBtn.classList.toggle('active');
       navContent.classList.toggle('active');
     });
 
-    // Fecha o menu mobile ao clicar em qualquer link
     const navLinks = document.querySelectorAll('.nav-link, .dropdown-menu a, .btn-agendar');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        hamburgerBtn.classList.remove('active');
-        navContent.classList.remove('active');
+        hamburgerBtn.classList.remove('ativo', 'active');
+        navContent.classList.remove('ativo', 'active');
       });
     });
 
-    // Fecha o menu se o usuário clicar fora dele
     document.addEventListener('click', (e) => {
       if (!navContent.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-        hamburgerBtn.classList.remove('active');
-        navContent.classList.remove('active');
+        hamburgerBtn.classList.remove('ativo', 'active');
+        navContent.classList.remove('ativo', 'active');
       }
     });
   }
 
-  // 2. PAINEL COLAPSÁVEL DE CONTATOS (SÓ EXECUTA SE OS ELEMENTOS EXISTIREM)
+  // Painel de Contatos
   const btnToggleContatos = document.getElementById('btnToggleContatos');
   const btnFecharContatos = document.getElementById('btnFecharContatos');
   const painelContatos = document.getElementById('painelContatos');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. SLIDESHOW (SEGURA ERROS DE ARQUIVOS ONDE ELE NÃO EXISTE)
+  // Slideshow
   const slides = document.querySelectorAll('.slide');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
@@ -96,7 +96,47 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Envio de mensagem para WhatsApp
+// Manipulação do Modal
+function abrirModal() {
+  const modal = document.getElementById('modalAgendamento');
+  if (modal) modal.style.display = 'flex';
+}
+
+function fecharModal() {
+  const modal = document.getElementById('modalAgendamento');
+  if (modal) modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('modalAgendamento');
+  if (event.target === modal) {
+    fecharModal();
+  }
+};
+
+function abrirModalServico(idConteudo) {
+  const modal = document.getElementById('modalServico');
+  const corpo = document.getElementById('modalServicoCorpo');
+  const fonte = document.getElementById(idConteudo);
+
+  if (modal && corpo && fonte) {
+    corpo.innerHTML = fonte.innerHTML;
+    modal.classList.add('ativo');
+  }
+}
+
+function fecharModalServico() {
+  const modal = document.getElementById('modalServico');
+  if (modal) modal.classList.remove('ativo');
+}
+
+function fecharModalServicoFora(event) {
+  if (event.target.id === 'modalServico') {
+    fecharModalServico();
+  }
+}
+
+// Envio para WhatsApp
 function enviarParaWhatsApp(e) {
   if (e) e.preventDefault();
   const nome = document.getElementById('nome')?.value || '';
@@ -116,3 +156,28 @@ function enviarParaWhatsApp(e) {
   window.open(url, '_blank');
   fecharModal();
 }
+
+// Animação de aparição fluida dos elementos ao rolar a página
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    root: null,
+    threshold: 0.12 // Ativa quando 12% do elemento entra na tela
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target); // Anima apenas uma vez
+      }
+    });
+  }, observerOptions);
+
+  // Aplica o efeito nas seções principais e nos cards
+  const elementosParaAnimar = document.querySelectorAll("section, .card-servico, .card-info, .mapa-wrapper");
+  
+  elementosParaAnimar.forEach(el => {
+    el.classList.add("reveal-on-scroll");
+    observer.observe(el);
+  });
+});
