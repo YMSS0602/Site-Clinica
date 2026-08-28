@@ -13,17 +13,15 @@ body {
   color: #3d3530;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 html, body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden; /* Corta qualquer elemento que tente sair da tela lateralmente */
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth; /* Rolagem suave para links internos */
 }
+
 
 /* ==========================================
    1. TOPBAR (FAIXA SUPERIOR)
@@ -64,6 +62,7 @@ html, body {
   align-items: center;
   gap: 1rem;
 }
+
 
 /* ==========================================
    2. NAVBAR PRINCIPAL
@@ -215,6 +214,91 @@ html, body {
   transition: all 0.3s ease;
 }
 
+/* >>> RESPONSIVO NAVBAR E TOPBAR <<< */
+@media (max-width: 1100px) {
+  .topbar-info span:first-child,
+  .divider-dot,
+  .topbar-social {
+    display: none;
+  }
+
+  .topbar-container {
+    justify-content: center;
+  }
+
+  .topbar-info {
+    gap: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .nav-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #efebe8;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    gap: 1.2rem;
+    border-top: 1px solid #e2dad5;
+    margin-left: 0;
+  }
+
+  .nav-content.active {
+    display: flex;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+    margin: 0;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    display: block;
+    padding: 0.4rem 0;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background-color: #e7e1dc;
+    margin-top: 0.4rem;
+    border-radius: 6px;
+  }
+
+  .btn-agendar {
+    width: 100%;
+    max-width: 300px;
+    margin: 0.5rem auto 0 auto;
+    text-align: center;
+  }
+
+  .hamburger-btn.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+}
+
+
 /* ==========================================
    3. HERO SECTION / SLIDESHOW
    ========================================== */
@@ -261,7 +345,6 @@ html, body {
   z-index: 1;
 }
 
-/* Camada escura sobre a foto */
 .slide-overlay {
   position: absolute;
   inset: 0;
@@ -269,7 +352,6 @@ html, body {
   z-index: 2;
 }
 
-/* Textos e botões na frente de tudo */
 .slide-conteudo {
   position: relative;
   z-index: 3;
@@ -313,7 +395,6 @@ html, body {
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Setas Laterais */
 .slide-nav {
   position: absolute;
   top: 50%;
@@ -342,7 +423,6 @@ html, body {
 .slide-nav.prev { left: 1.5rem; }
 .slide-nav.next { right: 1.5rem; }
 
-/* Pontos Inferiores */
 .dots-container {
   position: absolute;
   bottom: 1.5rem;
@@ -367,16 +447,18 @@ html, body {
   transform: scale(1.25);
 }
 
+/* >>> RESPONSIVO HERO <<< */
 @media (max-width: 768px) {
   .hero { height: 480px; }
   .slide-conteudo h2 { font-size: 2.3rem; }
   .slide-conteudo p { font-size: 1.15rem; }
   .slide-nav { display: none; }
 }
-/* ==========================================
-   4. SEÇÕES DE PÁGINAS E SOBRE NÓS
-   ========================================== */
 
+
+/* ==========================================
+   4. SEÇÕES DE PÁGINAS, SOBRE NÓS E PROFISSIONAIS
+   ========================================== */
 .secao-pagina {
   padding: 40px 3%;
   width: 100%;
@@ -389,13 +471,12 @@ html, body {
 }
 
 .container-secao {
-  max-width: 95%; /* Expande o conteúdo até próximo das bordas */
+  max-width: 95%; 
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 50px;
 }
-
 
 .flex-coluna {
   flex-direction: column;
@@ -432,8 +513,8 @@ html, body {
 
 .texto-centralizado {
   text-align: center;
-  max-width: 700px;
-  margin-bottom: 40px;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
 }
 
 .imagem-secao {
@@ -498,44 +579,37 @@ html, body {
   margin-bottom: 15px;
 }
 
-/* Grid e Cards dos Profissionais */
-
-
-/* Ajuste de rolagem da âncora */
+/* Área Profissionais (Cards corrigidos) */
 #profissionais {
-  /* Margem entre Profissionais e sobre a Elaborar*/
   scroll-margin-top: 100px;
   padding-top: 40px; 
 }
-#profissionais .texto-centralizado {
-  margin-bottom: 25px; /* Reduzido de 40px para 25px */
-}
 
-.texto-centralizado {
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto 40px auto;
+#profissionais .texto-centralizado {
+  margin-bottom: 25px; 
 }
 
 .grid-profissionais {
-  display: flex; 
-  flex-wrap: nowrap; /* Impede a quebra de linha em telas grandes */
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   width: 100%;
   max-width: 1650px;
   margin: 0 auto;
+  align-items: stretch;
 }
 
 .card-profissional {
   background: #ffffff;
-  padding: 25px 15px;
+  padding: 30px 20px;
   border-radius: 12px;
-  flex: 1 1 0; /* Força os 4 cards a terem exatamente o mesmo tamanho */
-  min-width: 0; /* Evita estouro de conteúdo */
-  max-width: none !important;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -545,8 +619,9 @@ html, body {
 }
 
 .foto-perfil {
-  width: 180px;       /* Proporcionaliza a foto ao novo tamanho do card (era 250px) */
-  height: 180px;
+  width: 160px;
+  height: 160px;
+  max-width: 100%;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 15px;
@@ -562,10 +637,10 @@ html, body {
 
 .cargo-tag {
   display: inline-block;
-  font-size: 20px;
+  font-size: 18px;
   color: #a67c52;
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
 }
 
 .card-profissional p {
@@ -573,15 +648,37 @@ html, body {
   line-height: 1.7;
   color: #665e56;
   text-align: center;          
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .secao-profissionais {
-  padding: 80px 20px; /* Reduza se o espaço superior estiver exagerado */
-  min-height: calc(100vh - 100px); /* Opcional: faz a seção ocupar a tela quase cheia */
+  padding: 60px 20px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* >>> RESPONSIVO SEÇÕES E PROFISSIONAIS <<< */
+@media (max-width: 1024px) {
+  .grid-profissionais {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 768px) {
+  .container-secao {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .grid-profissionais {
+    grid-template-columns: 1fr; 
+  }
+
+  .card-profissional {
+    width: 100%;
+    max-width: 100% !important;
+  }
 }
 
 
@@ -594,24 +691,12 @@ html, body {
   margin: 0 auto;
 }
 
-/* Header centralizado da página */
-.texto-centralizado {
-  text-align: center;
+#servicos .texto-centralizado {
   max-width: 750px;
   margin: 0 auto 50px auto;
 }
 
-.subtitulo-secao {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #a67c52;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.texto-centralizado h2 {
+#servicos .texto-centralizado h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 40px;
   font-weight: 700;
@@ -619,7 +704,7 @@ html, body {
   margin-bottom: 16px;
 }
 
-.texto-centralizado p {
+#servicos .texto-centralizado p {
   font-size: 1.05rem;
   line-height: 1.6;
   color: #665e56;
@@ -627,18 +712,17 @@ html, body {
 
 .grid-servicos {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 cards por linha */
+  grid-template-columns: repeat(5, 1fr); 
   gap: 20px;
   width: 100%;
-  max-width: 1600px; /*largura máxima pra caber na tela */
+  max-width: 1600px; 
   margin: 0 auto;
 }
 
-/* Card Individual ampliado em altura e presença */
 .card-servico {
   background-color: #ffffff;
-  padding: 40px 20px; /* Altura maior com espaçamento horizontal proporcional */
-  min-height: 320px;  /* Mantém todos os 10 cards com o mesmo tamanho alinhado */
+  padding: 40px 20px; 
+  min-height: 320px;  
   border-radius: 16px;
   border: 1px solid #efebe8;
   box-shadow: 0 6px 20px rgba(124, 110, 99, 0.06);
@@ -657,7 +741,6 @@ html, body {
   border-color: #a67c52;
 }
 
-/* Ícones e Textos */
 .icone-servico {
   width: 68px;
   height: 68px;
@@ -673,7 +756,8 @@ html, body {
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-card-servico:hover .icone-servico {
+/* Corrigido o bug do hover aqui */
+.card-servico:hover .icone-servico {
   background-color: #8c5d33;
   color: #ffffff;
   transform: scale(1.08);
@@ -693,6 +777,18 @@ card-servico:hover .icone-servico {
   line-height: 1.6;
   color: #665e56;
 }
+
+/* >>> RESPONSIVO SERVIÇOS <<< */
+@media (max-width: 1400px) {
+  .grid-servicos { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .grid-servicos { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .grid-servicos { grid-template-columns: 1fr; }
+}
+
 
 /* ==========================================
    6. PERGUNTAS FREQUENTES (FAQ)
@@ -717,7 +813,6 @@ card-servico:hover .icone-servico {
   gap: 16px;
 }
 
-/* Card do Item */
 .faq-item {
   background-color: #ffffff;
   border: 1px solid #efebe8;
@@ -732,8 +827,7 @@ card-servico:hover .icone-servico {
   box-shadow: 0 6px 18px rgba(124, 110, 99, 0.08);
 }
 
-/* Título / Pergunta */
-.faq-item summary {
+.faq-item summary, .pergunta-faq {
   padding: 22px 26px;
   font-size: 1.05rem;
   font-weight: 600;
@@ -755,7 +849,6 @@ card-servico:hover .icone-servico {
   color: #8c5d33;
 }
 
-/* Sinalizador de + / - automático */
 .faq-item summary::after {
   content: '+';
   font-size: 1.4rem;
@@ -769,8 +862,7 @@ card-servico:hover .icone-servico {
   content: '−';
 }
 
-/* Resposta */
-.faq-resposta {
+.faq-resposta, .resposta-faq {
   padding: 0 26px 22px 26px;
   color: #665e56;
   font-size: 0.96rem;
@@ -779,10 +871,21 @@ card-servico:hover .icone-servico {
   padding-top: 16px;
 }
 
+/* >>> RESPONSIVO FAQ <<< */
+@media (max-width: 600px) {
+  .pergunta-faq, .faq-item summary {
+    padding: 18px 20px;
+    font-size: 0.98rem;
+  }
+  .resposta-faq, .faq-resposta {
+    padding: 14px 20px 18px 20px;
+  }
+}
+
+
 /* ==========================================
    7. ESTRUTURA DO BLOG & CARDS
    ========================================== */
-
 .secao-blog {
   padding: 60px 20px 80px 20px;
   max-width: 1000px;
@@ -795,18 +898,8 @@ card-servico:hover .icone-servico {
   padding: 45px 40px;
   border: 1px solid #efebe8;
   box-shadow: 0 4px 20px rgba(124, 110, 99, 0.06);
-  max-width: 1000px; /* O limite de 1000px fica restrito apenas ao Blog/Contatos */
+  max-width: 1000px; 
   margin: 0 auto;
-}
-
-.subtitulo-secao {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #a67c52;
-  margin-bottom: 8px;
-  text-transform: uppercase;
 }
 
 .titulo-aba {
@@ -817,7 +910,6 @@ card-servico:hover .icone-servico {
   margin-bottom: 30px;
 }
 
-/* BARRA DO ADMINISTRADOR */
 .admin-bar {
   display: flex;
   justify-content: flex-end;
@@ -841,14 +933,13 @@ card-servico:hover .icone-servico {
   background-color: #f4efe9;
 }
 
-/* FORMULÁRIO DE PUBLICAÇÃO */
 .blog-form-box {
   background-color: #fcfaf7;
   border: 1px solid #e2dad5;
   border-radius: 12px;
   padding: 28px;
   margin-bottom: 40px;
-  display: none; /* Controlado via JS para exibir apenas se admin */
+  display: none; 
 }
 
 .blog-form-box.ativo {
@@ -902,7 +993,6 @@ card-servico:hover .icone-servico {
   transform: translateY(-1px);
 }
 
-/* CARDS DE ARTIGOS PUBLICADOS */
 #postsContainer {
   display: flex;
   flex-direction: column;
@@ -971,19 +1061,9 @@ card-servico:hover .icone-servico {
   text-decoration: underline;
 }
 
-/* RODAPÉ SIMPLES */
-.rodape-simples {
-  text-align: center;
-  padding: 30px 20px;
-  color: #7c6e63;
-  font-size: 0.88rem;
-  border-top: 1px solid #efebe8;
-  margin-top: 40px;
-} 
-
 
 /* ==========================================
-   8. ATENDIMENTO PARTICULAR
+   8. ATENDIMENTO PARTICULAR (Corrigido)
    ========================================== */
 #atendimento-particular {
   padding: 60px 20px 80px 20px;
@@ -991,38 +1071,25 @@ card-servico:hover .icone-servico {
   margin: 0 auto;
 }
 
-/* Cabeçalho da Seção */
-.texto-centralizado {
-  text-align: center;
+#atendimento-particular .texto-centralizado {
   max-width: 750px;
   margin: 0 auto 50px auto;
 }
 
-.subtitulo-secao {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #a67c52;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.texto-centralizado h2 {
+#atendimento-particular .texto-centralizado h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 70px;
+  font-size: 48px; /* Reduzido para evitar quebrar layout mobile */
   font-weight: 700;
   color: #554d46;
   margin-bottom: 16px;
 }
 
-.texto-centralizado p {
-  font-size: 20px;
+#atendimento-particular .texto-centralizado p {
+  font-size: 18px;
   line-height: 1.6;
   color: #665e56;
 }
 
-/* Grid de Cards (Modalidades e Pagamento) */
 .container-particular {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1048,7 +1115,6 @@ card-servico:hover .icone-servico {
   border-color: #a67c52;
 }
 
-/* Ícone Destacado Circular */
 .icone-particular {
   width: 76px;
   height: 76px;
@@ -1072,13 +1138,12 @@ card-servico:hover .icone-servico {
 }
 
 .card-particular > p {
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.6;
   color: #665e56;
   margin-bottom: 20px;
 }
 
-/* Estilização da Lista de Detalhes */
 .lista-detalhes {
   list-style: none;
   padding: 0;
@@ -1092,7 +1157,7 @@ card-servico:hover .icone-servico {
 .lista-detalhes li {
   position: relative;
   padding-left: 22px;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.6;
   color: #665e56;
 }
@@ -1111,7 +1176,6 @@ card-servico:hover .icone-servico {
   font-weight: 600;
 }
 
-/* Caixa de Informações Adicionais / WhatsApp */
 .caixa-duvidas-particular {
   background-color: #efebe8;
   border-radius: 14px;
@@ -1153,14 +1217,29 @@ card-servico:hover .icone-servico {
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.25s ease;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
 }
 
+/* >>> RESPONSIVO ATENDIMENTO PARTICULAR <<< */
+@media (max-width: 768px) {
+  #atendimento-particular .texto-centralizado h2 {
+    font-size: 32px;
+  }
+  .container-particular {
+    grid-template-columns: 1fr; /* Empilha os cards no celular */
+    gap: 20px;
+  }
+  .card-particular {
+    padding: 25px 20px;
+  }
+}
+
+
 /* ==========================================
-   9.ESTILIZAÇÃO DA PÁGINA DE CONTATOS
+   9. PÁGINA DE CONTATOS E RODAPÉ
    ========================================== */
-.card-box {
+.card-box.contato-box {
   background: #ffffff;
   border-radius: 16px;
   padding: 3rem 2.5rem;
@@ -1170,25 +1249,7 @@ card-servico:hover .icone-servico {
   margin: 0 auto;
 }
 
-.subtitulo-secao {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  color: #a67c52;
-  font-weight: 700;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.titulo-aba {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem;
-  color: #554d46;
-  margin-bottom: 0.8rem;
-}
-
-.card-box > p {
+.card-box.contato-box > p {
   color: #665e56;
   font-size: 1rem;
   line-height: 1.6;
@@ -1197,7 +1258,6 @@ card-servico:hover .icone-servico {
   padding-bottom: 1.2rem;
 }
 
-/* Grid de Informações */
 .grid-contatos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -1247,7 +1307,6 @@ card-servico:hover .icone-servico {
   text-decoration: underline;
 }
 
-/* Destaque Atendimento Particular */
 .bloco-particular {
   background-color: #f8f4f0;
   border: 1px dashed #d8c8b8;
@@ -1269,14 +1328,25 @@ card-servico:hover .icone-servico {
   margin: 0;
 }
 
+.rodape-simples {
+  text-align: center;
+  padding: 30px 20px;
+  color: #7c6e63;
+  font-size: 0.88rem;
+  border-top: 1px solid #efebe8;
+  margin-top: 40px;
+} 
+
+/* >>> RESPONSIVO CONTATOS / BLOG CARDS <<< */
 @media (max-width: 600px) {
   .card-box {
     padding: 2rem 1.2rem;
   }
 }
 
+
 /* ==========================================
-   1.2. MODAL DE AGENDAMENTO
+   10. MODAL DE AGENDAMENTO
    ========================================== */
 .modal {
   display: none; 
@@ -1288,8 +1358,8 @@ card-servico:hover .icone-servico {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  
 }
+
 .modal.ativo {
   display: flex;
 }
@@ -1376,125 +1446,134 @@ card-servico:hover .icone-servico {
 .btn-submit:hover {
   background-color: #6f4726;
 }
+
+/* >>> RESPONSIVO MODAL AGENDAMENTO <<< */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+
 /* ==========================================
-   1.3. MODAL DE SERVIÇOS
+   11. MODAL DE SERVIÇOS
    ========================================== */
-   
-    .btn-saiba-mais {
-      background: none;
-      border: none;
-      color: #7a5c4d;
-      font-family: 'Syne', sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      margin-top: 15px;
-      padding: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: color 0.3s ease;
-    }
+.btn-saiba-mais {
+  background: none;
+  border: none;
+  color: #7a5c4d;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 15px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease;
+}
 
-    .btn-saiba-mais:hover {
-      color: #4a3528;
-      text-decoration: underline;
-    }
+.btn-saiba-mais:hover {
+  color: #4a3528;
+  text-decoration: underline;
+}
 
-    /* Estrutura do Modal */
-    .modal-servico-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+.modal-servico-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-    .modal-servico-overlay.ativo {
-      display: flex;
-    }
+.modal-servico-overlay.ativo {
+  display: flex;
+}
 
-    .modal-servico-conteudo {
-      background: #faf7f2;
-      border-radius: 12px;
-      max-width: 650px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 35px 30px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      animation: modalFadeIn 0.3s ease;
-    }
+.modal-servico-conteudo {
+  background: #faf7f2;
+  border-radius: 12px;
+  max-width: 650px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 35px 30px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: modalFadeIn 0.3s ease;
+}
 
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .modal-fechar {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      color: #666;
-      cursor: pointer;
-      line-height: 1;
-    }
+.modal-fechar {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+}
 
-    .modal-servico-conteudo h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: #333;
-      margin-bottom: 20px;
-      padding-right: 30px;
-    }
+.modal-servico-conteudo h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  padding-right: 30px;
+}
 
-    .modal-servico-conteudo p {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #555;
-      margin-bottom: 15px;
-    }
+.modal-servico-conteudo p {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
 
-    .modal-servico-conteudo h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: #333;
-      margin-top: 25px;
-      margin-bottom: 15px;
-    }
+.modal-servico-conteudo h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: #333;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
 
-    /* Tags para Demandas da Psiquiatria */
-    .lista-tags-demandas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 15px;
-      padding: 0;
-      list-style: none;
-    }
+.lista-tags-demandas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 0;
+  list-style: none;
+}
 
-    .lista-tags-demandas li {
-      background-color: #eee7dd;
-      color: #4a3528;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.88rem;
-      padding: 8px 14px;
-      border-radius: 20px;
-    }
+.lista-tags-demandas li {
+  background-color: #eee7dd;
+  color: #4a3528;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
+
 /* ==========================================
-   1.5 BOTÃO FLUTUANTE WHATSAPP
+   12. BOTÃO FLUTUANTE WHATSAPP E EXTRAS
    ========================================== */
 .whatsapp-btn {
   position: fixed;
@@ -1511,16 +1590,8 @@ card-servico:hover .icone-servico {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   z-index: 80;
 }
-/* ==========================================
-   1.4 EFEITOS DE TRANSIÇÃO E REVELAÇÃO SUAVE
-   ========================================== */
 
-/* Rolagem suave para links internos (ex: #servicos, #contato) */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Estado inicial escondido dos elementos ao rolar a página */
+/* Efeitos de revelação suave */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(28px);
@@ -1529,156 +1600,21 @@ html {
   will-change: opacity, transform;
 }
 
-/* Estado visível ativado pelo JavaScript */
 .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Efeito de transição suave nas trocas de estado dos botões e links */
 a, button, .card-servico, .card-info {
   transition: all 0.3s ease-in-out;
 }
 
-/* ==========================================
-   1.6. RESPONSIVIDADE E MEDIA QUERIES
-   ========================================== */
-@media (max-width: 1100px) {
-  .topbar-info span:first-child,
-  .divider-dot,
-  .topbar-social {
-    display: none;
-  }
-
-  .topbar-container {
-    justify-content: center;
-  }
-
-  .topbar-info {
-    gap: 0.8rem;
-    font-size: 0.8rem;
-  }
-
-  .hamburger-btn {
-    display: flex;
-  }
-
-  .nav-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #efebe8;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    gap: 1.2rem;
-    border-top: 1px solid #e2dad5;
-    margin-left: 0;
-  }
-
-  .nav-content.active {
-    display: flex;
-  }
-
-  .nav-menu {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.8rem;
-    margin: 0;
-  }
-
-  .nav-item {
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-link {
-    font-size: 1rem;
-    display: block;
-    padding: 0.4rem 0;
-  }
-
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    background-color: #e7e1dc;
-    margin-top: 0.4rem;
-    border-radius: 6px;
-  }
-
-  .btn-agendar {
-    width: 100%;
-    max-width: 300px;
-    margin: 0.5rem auto 0 auto;
-    text-align: center;
-  }
-
-  .hamburger-btn.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-
-  .hamburger-btn.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger-btn.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-}
-
-@media (max-width: 768px) {
-  .container-secao {
-    flex-direction: column;
-    gap: 30px;
-  }
-}
-
-@media (max-width: 600px) {
-  .form-row {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-/* Ajuste Mobile */
-@media (max-width: 600px) {
-  .pergunta-faq {
-    padding: 18px 20px;
-    font-size: 0.98rem;
-  }
-  
-  .resposta-faq {
-    padding: 0 20px 18px 20px;
-    padding-top: 14px;
-  }
-}
-/*  */
+/* Extras (Seção Online) - Caso utilizada no HTML */
 @media (max-width: 600px) {
   .secao-online {
     padding: 50px 15px;
   }
-  
   .grid-online {
     grid-template-columns: 1fr;
-  }}
-
-
-  /* Serviços */
-@media (max-width: 1400px) {
-  .grid-servicos {
-    grid-template-columns: repeat(3, 1fr); /* 3 por linha em monitores menores */
-  }
-}
-
-@media (max-width: 900px) {
-  .grid-servicos {
-    grid-template-columns: repeat(2, 1fr); /* 2 por linha em tablets */
-  }
-}
-
-@media (max-width: 600px) {
-  .grid-servicos {
-    grid-template-columns: 1fr; /* 1 por linha no celular */
   }
 }
