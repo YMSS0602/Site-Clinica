@@ -9,9 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="clinica.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="clinica.js"></script>
   <!-- Quill Rich Text Editor CSS & JS -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+  
 </head>
 <body class="fundo-creme">
 
@@ -450,6 +452,17 @@
         }
       });
     }
+
+    // --- CONTROLE DO MENU HAMBÚRGUER ---
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navContent = document.getElementById('navContent');
+
+if (hamburgerBtn && navContent) {
+  hamburgerBtn.addEventListener('click', () => {
+    navContent.classList.toggle('ativo');
+    hamburgerBtn.classList.toggle('ativo');
+  });
+}
   </script>
 </body>
 </html>
