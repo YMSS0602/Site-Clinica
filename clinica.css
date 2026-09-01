@@ -22,6 +22,25 @@ html, body {
   scroll-behavior: smooth; /* Rolagem suave para links internos */
 }
 
+/* Força o cursor (caret) a ficar visível e preto, evitando o sumiço no fundo branco */
+.ql-editor,
+.ql-editor *,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  caret-color: #000000 !important;
+}
+
+/* Corrige o bug de elementos internos que criam traços fantasmas ou bloqueiam a seleção/apagamento no Quill */
+.ql-editor span {
+  background-color: transparent !important;
+}
+
+/* Evita que blocos fantasmas fiquem travados na tela na hora da edição */
+.ql-container.ql-snow {
+  box-sizing: border-box;
+}
 
 /* ==========================================
    1. TOPBAR (FAIXA SUPERIOR)
@@ -215,7 +234,7 @@ html, body {
 }
 
 /* >>> RESPONSIVO NAVBAR E TOPBAR <<< */
-@media (max-width: 1100px) {
+@media (max-width: 1366px  ) {
   .topbar-info span:first-child,
   .divider-dot,
   .topbar-social {
@@ -1617,4 +1636,18 @@ a, button, .card-servico, .card-info {
   .grid-online {
     grid-template-columns: 1fr;
   }
+}
+
+/* Força a remoção de qualquer caractere de controle ou pseudo-elemento gerado no final dos parágrafos do blog */
+.post-texto p::after,
+.post-texto div::after,
+.post-texto *:last-child::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Garante que nenhum span invisível ou cursor fantasma fique preso no texto */
+.post-texto span[style*="cursor"],
+.post-texto .ql-cursor {
+  display: none !important;
 }

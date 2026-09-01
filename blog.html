@@ -8,7 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="clinica.css">
-  <script src="clinica.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Quill Rich Text Editor CSS & JS -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 </head>
 <body class="fundo-creme">
 
@@ -50,24 +53,80 @@
     </div>
   </header>
 
-  <main class="secao-pagina">
+ <!-- Seção do Blog -->
+<main class="secao-blog">
     <div class="card-box">
-      <div class="admin-bar">
-        <button id="btnAdminToggle" class="btn-admin-toggle" onclick="toggleModoAdmin()">Área do Administrador</button>
-      </div>
+        <h1 class="titulo-aba">Artigos & Reflexões</h1>
+        
+        <!-- Botão que aciona o Modal de Administrador -->
+        <div class="admin-bar">
+            <button id="openAdminModalBtn" class="btn-admin-toggle">Painel do Administrador</button>
+        </div>
+<!-- Campo de Filtro / Busca -->
+<div style="margin-bottom: 20px;">
+    <input type="text" id="searchInput" placeholder="Filtrar artigos por título ou conteúdo..." onkeyup="filtrarPosts()" style="width: 100%; padding: 12px 16px; border: 1px solid #dcd6d0; border-radius: 8px; font-family: 'Syne', sans-serif; background: #fff;">
+</div>
 
-      <span class="subtitulo-secao">Artigos e Informações</span>
-      <h2 class="titulo-aba">Blog da Elaborar</h2>
+        <!-- Container onde os posts do Supabase aparecem -->
+        <div id="postsContainer">
+            <!-- Os posts carregam aqui via JavaScript -->
+        </div>
+    </div>
+</main>
 
-      <!-- Painel de escrita (Visível apenas para Administradores) -->
-      <div class="blog-form-box" id="blogFormBox">
-        <h3>Publicar novo artigo</h3>
-        <input type="text" id="postTitulo" placeholder="Título do artigo" />
-        <textarea id="postConteudo" rows="4" placeholder="Escreva o artigo aqui..."></textarea>
-        <button class="btn-publicar" onclick="salvarPost()">Publicar Artigo</button>
-      </div>
+<!-- MODAL DO PAINEL ADMINISTRATIVO -->
+<div id="adminModal" class="modal-servico-overlay">
+    <div class="modal-servico-conteudo" style="max-width: 750px;">
+        <button id="closeAdminModalBtn" class="modal-fechar">&times;</button>
+        
+        <h3 id="modalTituloPainel">Painel de Publicação</h3>
+        <p id="modalDescPainel">Insira suas credenciais de administrador para acessar o painel e publicar novos artigos.</p>
+        
+        <!-- Etapa 1: Validação de E-mail e Senha (Supabase Auth) -->
+        <div id="adminLoginForm">
+            <div style="margin-bottom: 12px;">
+                <label style="display:block; font-size:0.85rem; font-weight:600; color:#554d46; margin-bottom:5px;">E-mail de Acesso</label>
+                <input type="email" id="adminEmailInput" placeholder="seu-email@dominio.com" style="width: 100%; padding: 12px 16px; border: 1px solid #dcd6d0; border-radius: 8px; font-family: 'Syne', sans-serif; background: #fff;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display:block; font-size:0.85rem; font-weight:600; color:#554d46; margin-bottom:5px;">Senha</label>
+                <input type="password" id="adminPasswordInput" placeholder="Digite sua senha..." style="width: 100%; padding: 12px 16px; border: 1px solid #dcd6d0; border-radius: 8px; font-family: 'Syne', sans-serif; background: #fff;">
+            </div>
+            <button id="verifyAdminBtn" class="btn-publicar" style="width: 100%; margin-bottom: 10px;">Entrar no Painel</button>
+            <p id="loginErrorMsg" style="color: #c94a4a; font-size: 0.85rem; display: none; text-align: center;">E-mail ou senha incorretos. Tente novamente.</p>
+        </div>
+
+        <!-- Etapa 2: Formulário de Postagem (Só aparece após login bem-sucedido) -->
+        <div id="adminContentArea" style="display: none; margin-top: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+              <span style="color: #25d366; font-weight: 600; font-size: 0.9rem;">● Modo Administrador Ativo</span>
+              <button id="logoutAdminBtn" style="background: transparent; border: none; color: #c94a4a; cursor: pointer; font-size: 0.85rem; font-weight: 600;">Sair da Conta</button>
+            </div>
+            
+            <form id="blogForm" onsubmit="salvarPost(event)">
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:#554d46; margin-bottom:5px;">Título do Artigo</label>
+                    <input type="text" id="postTitle" placeholder="Ex: Psicologia, um olhar mais..." required style="width: 100%; padding: 12px 16px; border: 1px solid #dcd6d0; border-radius: 8px; font-family: 'Syne', sans-serif; background: #fff;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:#554d46; margin-bottom:5px;">Nome do Autor</label>
+                    <input type="text" id="postAuthor" placeholder="Ex: Millena Mendonça" value="Millena Mendonça" style="width: 100%; padding: 12px 16px; border: 1px solid #dcd6d0; border-radius: 8px; font-family: 'Syne', sans-serif; background: #fff;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; font-size:0.85rem; font-weight:600; color:#554d46; margin-bottom:5px;">Conteúdo Completo</label>
+                    <!-- Editor Visual Quill -->
+                    <div id="editor-container" style="height: 220px; background: #fff; border-radius: 0 0 8px 8px; font-family: 'Syne', sans-serif;"></div>
+                </div>
+
+                <button type="submit" class="btn-publicar" style="width: 100%;">Publicar Artigo</button>
+            </form>
+        </div>
+    </div>
+</div>
  
-      <!-- MODAL DE AGENDAMENTO -->
+<!-- MODAL DE AGENDAMENTO -->
   <div id="modalAgendamento" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="fecharModal()">&times;</span>
@@ -92,128 +151,305 @@
       </form>
     </div>
   </div>
-      <!-- Exibição dos artigos salvos -->
-      <div id="postsContainer"></div>
-    </div>
-
-  </main>
 
   <footer class="rodape-simples">
     <p>© Elaborar – Centro Integrado de Saúde Mental.</p>
   </footer>
 
   <script>
-    const SENHA_ADMIN = "elaborar123"; // Defina a senha do administrador aqui
+    const SUPABASE_URL = 'https://mcnyhhybyrskovgafups.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jbnloaHlieXJza292Z2FmdXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyMjUxMjIsImV4cCI6MjEwMzgwMTEyMn0.yeOPWAJ4aO6QkNWcxNxuhdVqgdOGD8NCjZKwW63DAy0';
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    function ehAdmin() {
-      return localStorage.getItem('elaborar_is_admin') === 'true';
+    let quill;
+    let idPostEmEdicao = null;
+
+    async function ehAdmin() {
+      const { data: { session } } = await _supabase.auth.getSession();
+      return session !== null;
     }
 
-    function atualizarInterfaceAdmin() {
-      const formBox = document.getElementById('blogFormBox');
-      const btnToggle = document.getElementById('btnAdminToggle');
-
-      if (ehAdmin()) {
-        formBox.classList.add('ativo');
-        btnToggle.textContent = 'Sair do Modo Admin';
-      } else {
-        formBox.classList.remove('ativo');
-        btnToggle.textContent = 'Área do Administrador';
-      }
-      carregarPosts();
-    }
-
-    function toggleModoAdmin() {
-      if (ehAdmin()) {
-        localStorage.setItem('elaborar_is_admin', 'false');
-        alert('Você saiu do modo administrador.');
-      } else {
-        const senha = prompt('Digite a senha de administrador para publicar artigos:');
-        if (senha === SENHA_ADMIN) {
-          localStorage.setItem('elaborar_is_admin', 'true');
-          alert('Autenticado com sucesso como Administrador!');
-        } else if (senha !== null) {
-          alert('Senha incorreta! Acesso negado.');
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Inicializa o Editor Quill
+      quill = new Quill('#editor-container', {
+        theme: 'snow',
+        placeholder: 'Escreva seu artigo aqui...',
+        modules: {
+          toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ header: [1, 2, false] }],
+            ['clean']
+          ]
         }
-      }
-      atualizarInterfaceAdmin();
-    }
+      });
 
-    function carregarPosts() {
-      const posts = JSON.parse(localStorage.getItem('elaborar_posts')) || [];
+      await carregarPosts();
+    });
+
+    async function carregarPosts() {
+      const { data: posts, error } = await _supabase
+        .from('posts')
+        .select('*')
+        .order('created_at', { ascending: false });
+
       const container = document.getElementById('postsContainer');
       container.innerHTML = '';
 
-      if (posts.length === 0) {
-        container.innerHTML = '<p style="color: #665e56;">Nenhum artigo publicado ainda.</p>';
+      if (error || !posts || posts.length === 0) {
+        container.innerHTML = '<p style="color: #665e56; text-align: center; padding: 20px;">Nenhum artigo publicado ainda.</p>';
         return;
       }
 
-      const adminAtivo = ehAdmin();
+      const adminAtivo = await ehAdmin();
 
-      posts.forEach((post, index) => {
+      posts.forEach((post) => {
         const postDiv = document.createElement('div');
         postDiv.className = 'post-card';
         
-        let botaoDeletar = '';
+        let botoesAdmin = '';
         if (adminAtivo) {
-          botaoDeletar = `
-            <div class="post-acoes">
-              <button class="btn-deletar" onclick="excluirPost(${index})">Excluir Artigo</button>
+          botoesAdmin = `
+            <div class="post-acoes" style="margin-top: 15px; display: flex; gap: 10px;">
+              <button class="btn-editar" onclick="prepararEdicao(${post.id}, \`${escapeHtml(post.titulo)}\`, \`${escapeHtml(post.autor || 'Millena Mendonça')}\`)" style="background: #4a75c9; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Editar Artigo</button>
+              <button class="btn-deletar" onclick="excluirPost(${post.id})" style="background: #c94a4a; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">Excluir Artigo</button>
             </div>
           `;
         }
 
+        const dataFormatada = post.created_at ? new Date(post.created_at).toLocaleDateString('pt-BR') : '';
+        const nomeAutor = post.autor ? `Por ${post.autor}` : '';
+
+        // Limpeza de parágrafos vazios salvos pelo Quill
+        let conteudoLimpo = post.conteudo ? post.conteudo.replace(/<p><br><\/p>/g, '').replace(/<p><\/p>/g, '') : '';
+
         postDiv.innerHTML = `
-          <h3>${post.titulo}</h3>
-          <div class="post-meta">Publicado em: ${post.data}</div>
-          <p>${post.conteudo}</p>
-          ${botaoDeletar}
+          <h3>${escapeHtml(post.titulo)}</h3>
+          <div class="post-meta" style="margin-top: 4px; margin-bottom: 12px; font-size: 0.85rem; color: #7a7067;">
+            ${nomeAutor} ${nomeAutor && dataFormatada ? '&bull;' : ''} Publicado em: ${dataFormatada}
+          </div>
+          <div class="post-texto" style="margin-top: 10px; line-height: 1.6;">${conteudoLimpo}</div>
+          ${botoesAdmin}
         `;
         container.appendChild(postDiv);
       });
     }
 
-    function salvarPost() {
-      if (!ehAdmin()) {
-        alert('Apenas administradores podem publicar artigos!');
+    function prepararEdicao(id, tituloAtual, autorAtual) {
+      idPostEmEdicao = id;
+      
+      adminModal.classList.add('ativo');
+      adminLoginForm.style.display = 'none';
+      adminContentArea.style.display = 'block';
+      modalTituloPainel.textContent = 'Editar Artigo';
+      modalDescPainel.textContent = 'Modifique os campos abaixo e clique em Salvar Alterações.';
+
+      document.getElementById('postTitle').value = tituloAtual;
+      document.getElementById('postAuthor').value = autorAtual || 'Millena Mendonça';
+
+      _supabase.from('posts').select('conteudo').eq('id', id).single().then(({ data }) => {
+        if (data) {
+          quill.root.innerHTML = data.conteudo;
+        }
+      });
+
+      const btnSubmit = document.querySelector('#blogForm button[type="submit"]');
+      if (btnSubmit) btnSubmit.textContent = 'Salvar Alterações';
+    }
+
+    async function salvarPost(event) {
+      event.preventDefault();
+      if (!(await ehAdmin())) {
+        alert('Apenas administradores podem gerenciar artigos!');
         return;
       }
 
-      const titulo = document.getElementById('postTitulo').value;
-      const conteudo = document.getElementById('postConteudo').value;
+      const titulo = document.getElementById('postTitle').value;
+      const autor = document.getElementById('postAuthor').value || 'Millena Mendonça';
+      
+      // Limpa as tags vazias do Quill antes de enviar para o banco
+      let conteudo = quill.root.innerHTML;
+      conteudo = conteudo.replace(/<p><br><\/p>/g, '').replace(/<p><\/p>/g, '');
 
-      if (!titulo || !conteudo) {
+      if (!titulo || quill.getText().trim().length === 0) {
         alert('Por favor, preencha o título e o conteúdo do artigo!');
         return;
       }
 
-      const novoPost = {
-        titulo,
-        conteudo,
-        data: new Date().toLocaleDateString('pt-BR')
-      };
+      let error;
 
-      const posts = JSON.parse(localStorage.getItem('elaborar_posts')) || [];
-      posts.unshift(novoPost);
-      localStorage.setItem('elaborar_posts', JSON.stringify(posts));
+      if (idPostEmEdicao) {
+        const res = await _supabase
+          .from('posts')
+          .update({ titulo, autor, conteudo })
+          .eq('id', idPostEmEdicao);
+        error = res.error;
+      } else {
+        const res = await _supabase
+          .from('posts')
+          .insert([{ titulo, autor, conteudo }]);
+        error = res.error;
+      }
 
-      document.getElementById('postTitulo').value = '';
-      document.getElementById('postConteudo').value = '';
+      if (error) {
+        alert('Erro ao salvar o artigo.');
+        console.error(error);
+        return;
+      }
+
+      document.getElementById('postTitle').value = '';
+      document.getElementById('postAuthor').value = 'Millena Mendonça';
+      quill.setContents([]);
+      idPostEmEdicao = null;
+      
+      const btnSubmit = document.querySelector('#blogForm button[type="submit"]');
+      if (btnSubmit) btnSubmit.textContent = 'Publicar Artigo';
+      
+      adminModal.classList.remove('ativo');
       carregarPosts();
+      alert('Artigo salvo com sucesso!');
     }
 
-    function excluirPost(index) {
-      if (!ehAdmin()) return;
+    async function excluirPost(id) {
+      if (!(await ehAdmin())) return;
       
       if (confirm('Deseja realmente excluir este artigo?')) {
-        const posts = JSON.parse(localStorage.getItem('elaborar_posts')) || [];
-        posts.splice(index, 1);
-        localStorage.setItem('elaborar_posts', JSON.stringify(posts));
+        const { error } = await _supabase
+          .from('posts')
+          .delete()
+          .eq('id', id);
+
+        if (error) {
+          alert('Erro ao deletar artigo.');
+          console.error(error);
+          return;
+        }
+
         carregarPosts();
       }
     }
-    document.addEventListener('DOMContentLoaded', atualizarInterfaceAdmin);
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // --- CONTROLE DO MODAL DE ADMINISTRAÇÃO ---
+    const openAdminModalBtn = document.getElementById('openAdminModalBtn');
+    const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
+    const adminModal = document.getElementById('adminModal');
+    const verifyAdminBtn = document.getElementById('verifyAdminBtn');
+    const adminEmailInput = document.getElementById('adminEmailInput');
+    const adminPasswordInput = document.getElementById('adminPasswordInput');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const adminContentArea = document.getElementById('adminContentArea');
+    const loginErrorMsg = document.getElementById('loginErrorMsg');
+    const logoutAdminBtn = document.getElementById('logoutAdminBtn');
+    const modalTituloPainel = document.getElementById('modalTituloPainel');
+    const modalDescPainel = document.getElementById('modalDescPainel');
+
+    openAdminModalBtn.addEventListener('click', async () => {
+        idPostEmEdicao = null;
+        const btnSubmit = document.querySelector('#blogForm button[type="submit"]');
+        if (btnSubmit) btnSubmit.textContent = 'Publicar Artigo';
+        document.getElementById('postTitle').value = '';
+        document.getElementById('postAuthor').value = 'Millena Mendonça';
+        if (quill) quill.setContents([]);
+
+        adminModal.classList.add('ativo');
+        loginErrorMsg.style.display = 'none';
+        adminPasswordInput.value = '';
+
+        if (await ehAdmin()) {
+            adminLoginForm.style.display = 'none';
+            adminContentArea.style.display = 'block';
+            modalTituloPainel.textContent = 'Novo Artigo';
+            modalDescPainel.textContent = 'Preencha os campos abaixo para adicionar um novo artigo ao blog.';
+        } else {
+            adminLoginForm.style.display = 'block';
+            adminContentArea.style.display = 'none';
+            modalTituloPainel.textContent = 'Painel de Publicação';
+            modalDescPainel.textContent = 'Insira suas credenciais de administrador para acessar o painel.';
+            adminEmailInput.focus();
+        }
+    });
+
+    closeAdminModalBtn.addEventListener('click', () => {
+        adminModal.classList.remove('ativo');
+    });
+
+    adminModal.addEventListener('click', (e) => {
+        if (e.target === adminModal) {
+            adminModal.classList.remove('ativo');
+        }
+    });
+
+    async function validarSenhaAdmin() {
+        const emailDigitado = adminEmailInput.value.trim();
+        const senhaDigitada = adminPasswordInput.value.trim();
+
+        const { data, error } = await _supabase.auth.signInWithPassword({
+          email: emailDigitado,
+          password: senhaDigitada,
+        });
+
+        if (error) {
+            loginErrorMsg.style.display = 'block';
+            loginErrorMsg.textContent = 'E-mail ou senha incorretos.';
+            adminPasswordInput.value = '';
+            adminPasswordInput.focus();
+            return;
+        }
+
+        adminLoginForm.style.display = 'none';
+        adminContentArea.style.display = 'block';
+        modalTituloPainel.textContent = 'Novo Artigo';
+        modalDescPainel.textContent = 'Preencha os campos abaixo para adicionar um novo artigo ao blog.';
+        loginErrorMsg.style.display = 'none';
+        carregarPosts(); 
+    }
+
+    verifyAdminBtn.addEventListener('click', validarSenhaAdmin);
+
+    adminPasswordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            validarSenhaAdmin();
+        }
+    });
+
+    logoutAdminBtn.addEventListener('click', async () => {
+        await _supabase.auth.signOut();
+        adminModal.classList.remove('ativo');
+        carregarPosts();
+        alert('Você saiu do modo administrador.');
+    });
+
+    function abrirModal() {
+      const modal = document.getElementById('modalAgendamento');
+      if(modal) modal.classList.add('ativo');
+    }
+    function fecharModal() {
+      const modal = document.getElementById('modalAgendamento');
+      if(modal) modal.classList.remove('ativo');
+    }
+    function enviarParaWhatsApp(event) {
+      event.preventDefault();
+    }
+
+    function filtrarPosts() {
+      const termo = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.post-card');
+
+      cards.forEach(card => {
+        const textoCard = card.innerText.toLowerCase();
+        if (textoCard.includes(termo)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
   </script>
 </body>
 </html>
