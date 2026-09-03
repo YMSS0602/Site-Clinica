@@ -12,50 +12,53 @@
     <link rel="stylesheet" href="clinica.css">
   </head>
   <body>
-<!-- NAVBAR PRINCIPAL -->
-<header class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo-brand">
-      <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
-    </a>
+<!-- NAVBAR UNIFICADA -->
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-<!-- Navbar Unificada -->
-    <div class="nav-content" id="navContent">
-      <nav class="nav-menu">
-        <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-brand">
+        <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+      </a>
 
-        <div class="nav-item has-dropdown">
-          <a href="servicos.html" class="nav-link">Serviços</a>
-          <div class="dropdown-menu">
-            <a href="servicos.html#psicoterapia">Psicoterapia</a>
-            <a href="servicos.html#psicanalise">Psicanálise</a>
-            <a href="servicos.html#psiquiatria">Psiquiatria</a>
-            <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-            <a href="servicos.html#orientacao-parental">Orientação Parental</a>
-          </div>
-        </div>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
 
-        <a href="sobre.html#profissionais" class="nav-link">Profissionais</a>
-        <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
-        <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contatos.html" class="nav-link">Fale conosco</a>
-      </nav>
-      <!-- BOTÃO DE AÇÃO -->
-      <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+      <div class="nav-content" id="navContent">
+        <nav class="nav-menu">
+          <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+          
+          <div class="nav-item has-dropdown">
+            <a href="servicos.html" class="nav-link">Serviços</a>
+            <div class="dropdown-menu">
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-orientacao')">Orientação Parental</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-supervisao')">Supervisão em Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-nr1')">NR-1 e Saúde Mental</a>
+            </div> <!-- Fechamento da div dropdown-menu que estava faltando -->
+          </div> <!-- Fechamento da div nav-item has-dropdown que estava faltando -->
 
+          <a href="profissionais.html" class="nav-link">Profissionais</a>
+          <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
+          <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contatos.html" class="nav-link">Fale conosco</a>
+        </nav>
+
+        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 <section id="profissionais" class="secao-pagina fundo-diferente">
       <div class="container-secao flex-coluna">
         
         <div class="texto-centralizado">
-          <span class="subtitulo-secao">Corpo Clínico</span>
           <h2>Nossa Equipe de Profissionais</h2>
           <p>Especialistas dedicados ao seu bem-estar e ao cuidado integrado da sua saúde mental.</p>
         </div>
@@ -72,7 +75,7 @@
   <h3>Millena Mendonça</h3>
   <span class="cargo-tag">Psicóloga Clínica e Jurídica/ CRP: 03/11388</span>
 <p>
-  Psicóloga clínica e jurídica, especialista em Psicopatologia Clínica, Psicologia Jurídica e Neuropsicologia. Atua sob orientação psicanalítica há mais de dez anos no atendimento a adolescentes, adultos, idosos e famílias, priorizando a escuta singular e a história de cada paciente.
+  Psicóloga clínica e jurídica, especialista em Psicopatologia Clínica, Psicologia Jurídica e Neuropsicologia. Atua sob orientação psicanalítica há mais de dez anos no atendimento a adolescentes, adultos e idosos, priorizando a escuta singular e a história de cada paciente.
   <br><br>
   Possui vasta experiência no serviço público no trabalho com conflitos familiares, violência contra a mulher e situações de vulnerabilidade. É fundadora da Elaborar – Centro Integrado de Saúde Mental, projeto que nasceu do desejo de unir rigor técnico, acolhimento e cuidado integrado.
   <br><br>
@@ -156,6 +159,38 @@
 
         <button type="submit" class="btn-submit">Enviar mensagem</button>
       </form>
+      <script>
+
+      function abrirModalServicoPorNome(idDetalhe) {
+  if (!window.location.pathname.includes('servicos.html')) {
+    window.location.href = `servicos.html?abrir=${idDetalhe}`;
+    return;
+  }
+  abrirModalServico(idDetalhe);
+}
+
+function destacarCard(idCard) {
+  document.querySelectorAll('.card-servico').forEach(card => card.classList.remove('destacado'));
+  const card = document.getElementById(idCard);
+  if (card) {
+    card.classList.add('destacado');
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const params = new URLSearchParams(window.location.search);
+  const modalParaAbrir = params.get('abrir');
+  
+  if (modalParaAbrir) {
+    setTimeout(() => {
+      abrirModalServico(modalParaAbrir);
+    }, 200);
+  }
+});
+
+
+
+      </script>
     </div>
   </div>
   </main>

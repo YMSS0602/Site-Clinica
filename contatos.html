@@ -30,11 +30,15 @@
           <div class="nav-item has-dropdown">
             <a href="servicos.html" class="nav-link">Serviços</a>
             <div class="dropdown-menu">
-              <a href="servicos.html#psicoterapia">Psicoterapia</a>
-              <a href="servicos.html#psicanalise">Psicanálise</a>
-              <a href="servicos.html#psiquiatria">Psiquiatria</a>
-              <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-              <a href="servicos.html#orientacao-parental">Orientação Parental</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-orientacao')">Orientação Parental</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-supervisao')">Supervisão em Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-nr1')">NR-1 e Saúde Mental</a>
             </div>
           </div>
 
@@ -50,55 +54,72 @@
     </div>
   </header>
 
-  <main class="secao-pagina">
+<main class="secao-pagina">
     <div class="card-box">
       <span class="subtitulo-secao">Tem dúvidas sobre os atendimentos ou deseja agendar uma consulta?</span>
       <h2 class="titulo-aba">Entre em contato com a Elaborar.</h2>
       <p>Agende sua consulta e encontre o cuidado adequado para você.</p>
 
       <div class="grid-contatos">
-        <div class="card-contato-item">
+        <!-- Endereço Linkado para o Google Maps -->
+        <a href="https://maps.google.com/?q=Av.+Princesa+Isabel,+395+-+Itabuna+-+BA" target="_blank" class="card-contato-item" style="text-decoration: none; color: inherit; display: block; transition: transform 0.2s;">
           <h3>📍 Endereço</h3>
           <p>Av. Princesa Isabel, nº 395 – Ed. Itabuna Trade Center, Sala 509<br>Itabuna - BA</p>
-        </div>
+        </a>
 
-        <div class="card-contato-item">
+        <!-- Telefone Linkado para o WhatsApp -->
+        <a href="https://wa.me/5573981394240" target="_blank" class="card-contato-item" style="text-decoration: none; color: inherit; display: block; transition: transform 0.2s;">
           <h3>📱 Telefone / WhatsApp</h3>
           <p>(73) 9 8139-4240</p>
-        </div>
+        </a>
 
+        <!-- Horário (Apenas Informativo) -->
         <div class="card-contato-item">
           <h3>🕒 Horário de Funcionamento</h3>
           <p>Segunda à Sexta-feira: 08h00 às 19h00<br>Sábados: 08h00 às 12h00</p>
         </div>
       </div>
 
-      
-     <!-- MODAL DE AGENDAMENTO -->
-  <div id="modalAgendamento" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="fecharModal()">&times;</span>
-      
-      <h2>Agendar Consulta</h2>
-      <p>Entre em contato com a Elaborar para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
+      <div class="grid-contatos" style="margin-top: 20px;">
+        <!-- E-mail Linkado para disparo de e-mail -->
+        <a href="mailto:elaborarsaudemental@gmail.com" class="card-contato-item" style="text-decoration: none; color: inherit; display: block; transition: transform 0.2s;">
+          <h3>📧 Email Da Clínica</h3>
+          <p>elaborarsaudemental@gmail.com</p>
+        </a>
 
-      <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
-        <div class="form-row">
-          <input type="text" id="nome" placeholder="Nome" required />
-          <input type="email" id="email" placeholder="E-mail" required />
-        </div>
-        
-        <div class="form-row">
-          <input type="tel" id="telefone" placeholder="Telefone / WhatsApp" required />
-          <input type="text" id="assunto" placeholder="Assunto" required />
-        </div>
-
-        <textarea id="mensagem" rows="4" placeholder="Descreva melhor suas dúvidas ou deixe-nos uma sugestão!" required></textarea>
-
-        <button type="submit" class="btn-submit">Enviar mensagem</button>
-      </form>
+        <!-- Instagram Linkado para o perfil -->
+        <a href="https://instagram.com/clinica.elaborar" target="_blank" class="card-contato-item" style="text-decoration: none; color: inherit; display: block; transition: transform 0.2s;">
+          <h3>📷 Instagram</h3>
+          <p>@clinica.elaborar</p>
+        </a>
+      </div>
     </div>
-  </div>
+      
+    <!-- MODAL DE AGENDAMENTO -->
+    <div id="modalAgendamento" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="fecharModal()">&times;</span>
+        
+        <h2>Agendar Consulta</h2>
+        <p>Entre em contato com a Elaborar para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
+
+        <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
+          <div class="form-row">
+            <input type="text" id="nome" placeholder="Nome" required />
+            <input type="email" id="email" placeholder="E-mail" required />
+          </div>
+          
+          <div class="form-row">
+            <input type="tel" id="telefone" placeholder="Telefone / WhatsApp" required />
+            <input type="text" id="assunto" placeholder="Assunto" required />
+          </div>
+
+          <textarea id="mensagem" rows="4" placeholder="Descreva melhor suas dúvidas ou deixe-nos uma sugestão!" required></textarea>
+
+          <button type="submit" class="btn-submit">Enviar mensagem</button>
+        </form>
+      </div>
+    </div>
   </main>
 
   <footer class="rodape-simples">
@@ -109,5 +130,58 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   </a>
 
+  <script>
+    function abrirModalServicoPorNome(idDetalhe) {
+      if (!window.location.pathname.includes('servicos.html')) {
+        window.location.href = `servicos.html?abrir=${idDetalhe}`;
+        return;
+      }
+      abrirModalServico(idDetalhe);
+    }
+
+    function destacarCard(idCard) {
+      document.querySelectorAll('.card-servico').forEach(card => card.classList.remove('destacado'));
+      const card = document.getElementById(idCard);
+      if (card) {
+        card.classList.add('destacado');
+      }
+    }
+
+    function abrirModal() {
+      const modal = document.getElementById('modalAgendamento');
+      if(modal) modal.classList.add('ativo');
+    }
+
+    function fecharModal() {
+      const modal = document.getElementById('modalAgendamento');
+      if(modal) modal.classList.remove('ativo');
+    }
+
+    function enviarParaWhatsApp(event) {
+      event.preventDefault();
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const params = new URLSearchParams(window.location.search);
+      const modalParaAbrir = params.get('abrir');
+      
+      if (modalParaAbrir) {
+        setTimeout(() => {
+          abrirModalServico(modalParaAbrir);
+        }, 200);
+      }
+    });
+
+    // --- CONTROLE DO MENU HAMBÚRGUER ---
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navContent = document.getElementById('navContent');
+
+    if (hamburgerBtn && navContent) {
+      hamburgerBtn.addEventListener('click', () => {
+        navContent.classList.toggle('ativo');
+        hamburgerBtn.classList.toggle('ativo');
+      });
+    }
+  </script>
 </body>
 </html>

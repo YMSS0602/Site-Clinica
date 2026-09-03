@@ -13,46 +13,48 @@
     <script src="clinica.js"></script>
   </head>
   <body>
-<!-- NAVBAR PRINCIPAL -->
-<header class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo-brand">
-      <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
-    </a>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-<!-- Navbar Unificada -->
-    <div class="nav-content" id="navContent">
-      <nav class="nav-menu">
-        <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+<!-- NAVBAR UNIFICADA -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-brand">
+        <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+      </a>
 
-        <div class="nav-item has-dropdown">
-          <a href="servicos.html" class="nav-link">Serviços</a>
-          <div class="dropdown-menu">
-            <a href="servicos.html#psicoterapia">Psicoterapia</a>
-            <a href="servicos.html#psicanalise">Psicanálise</a>
-            <a href="servicos.html#psiquiatria">Psiquiatria</a>
-            <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-            <a href="servicos.html#orientacao-parental">Orientação Parental</a>
-          </div>
-        </div>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
 
-        <a href="profissionais.html" class="nav-link">Profissionais</a>
-        <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
-        <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contatos.html" class="nav-link">Fale conosco</a>
-      </nav>
-      <!-- BOTÃO DE AÇÃO -->
-      <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+      <div class="nav-content" id="navContent">
+        <nav class="nav-menu">
+          <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+          
+          <div class="nav-item has-dropdown">
+            <a href="servicos.html" class="nav-link">Serviços</a>
+            <div class="dropdown-menu">
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-orientacao')">Orientação Parental</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-supervisao')">Supervisão em Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-nr1')">NR-1 e Saúde Mental</a>
+            </div> <!-- Fechamento da div dropdown-menu que estava faltando -->
+          </div> <!-- Fechamento da div nav-item has-dropdown que estava faltando -->
 
+          <a href="profissionais.html" class="nav-link">Profissionais</a>
+          <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
+          <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contatos.html" class="nav-link">Fale conosco</a>
+        </nav>
+
+        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+      </div>
     </div>
-  </div>
-</header>
-
-
+  </header>
 
 <section class="faq-container">
     <h2>Perguntas Frequentes</h2>
@@ -62,7 +64,7 @@
         <details class="faq-item">
             <summary>Quanto custa a sessão de terapia?</summary>
             <div class="faq-resposta">
-                <p>Na Clínica Elaborar, a sessão de psicoterapia tem valor de R$ 90,00, com duração de 30 minutos. Também oferecemos o pacote de 4 sessões por R$ 300,00. Os atendimentos podem ser realizados presencialmente ou on-line, pelo mesmo valor.</p>
+                <p>Entre em contato conosco para que possamos lhe enviar as informações.</p>
             </div>
         </details>
 
@@ -70,9 +72,7 @@
          <!--PERGUNTA 2-->
         <details class="faq-item">
             <summary>Quais são as formas de pagamento? </summary>
-            <div class="faq-resposta">
-                <p> Os atendimentos são realizados de forma particular. 
-                            <br><br/>
+            <div class="faq-resposta">                      
 É possível realizar o pagamento por Pix ou cartão de crédito, inclusive com possibilidade de parcelamento no cartão em até 10 vezes na avaliação neuropsicológica.</p>
             </div>
         </details>
@@ -197,5 +197,34 @@
       </form>
     </div>
   </div>
+  <script>
+
+          function abrirModalServicoPorNome(idDetalhe) {
+  if (!window.location.pathname.includes('servicos.html')) {
+    window.location.href = `servicos.html?abrir=${idDetalhe}`;
+    return;
+  }
+  abrirModalServico(idDetalhe);
+}
+
+function destacarCard(idCard) {
+  document.querySelectorAll('.card-servico').forEach(card => card.classList.remove('destacado'));
+  const card = document.getElementById(idCard);
+  if (card) {
+    card.classList.add('destacado');
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const params = new URLSearchParams(window.location.search);
+  const modalParaAbrir = params.get('abrir');
+  
+  if (modalParaAbrir) {
+    setTimeout(() => {
+      abrirModalServico(modalParaAbrir);
+    }, 200);
+  }
+});
+  </script>
     </div>
 </section>

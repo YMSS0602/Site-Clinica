@@ -12,44 +12,44 @@
     <link rel="stylesheet" href="clinica.css">
   </head>
   <body>
-<!-- NAVBAR PRINCIPAL -->
-<header class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo-brand">
-      <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
-    </a>
+<!-- NAVBAR UNIFICADA -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-brand">
+        <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+      </a>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
 
-    <div class="nav-content" id="navContent">
-      <nav class="nav-menu">
-        <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
-
-        <div class="nav-item has-dropdown">
-          <a href="servicos.html" class="nav-link">Serviços</a>
-          <div class="dropdown-menu">
-            <a href="servicos.html#psicoterapia">Psicoterapia</a>
-            <a href="servicos.html#psicanalise">Psicanálise</a>
-            <a href="servicos.html#psiquiatria">Psiquiatria</a>
-            <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-            <a href="servicos.html#orientacao-parental">Orientação Parental</a>
+      <div class="nav-content" id="navContent">
+        <nav class="nav-menu">
+          <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+          
+          <div class="nav-item has-dropdown">
+            <a href="servicos.html" class="nav-link">Serviços</a>
+           <div class="dropdown-menu">
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
+           </div>
           </div>
-        </div>
 
-        <a href="profissionais.html" class="nav-link">Profissionais</a>
-        <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
-        <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contatos.html" class="nav-link">Fale conosco</a>
-      </nav>
-      <!-- BOTÃO DE AÇÃO -->
-      <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+          <a href="profissionais.html" class="nav-link">Profissionais</a>
+          <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
+          <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contatos.html" class="nav-link">Fale conosco</a>
+        </nav>
 
+        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 <!-- HERO SECTION / SLIDESHOW -->
   <section class="hero">
     <div class="slideshow-container">
@@ -59,7 +59,6 @@
         <img src="imagenssite/poltro.png" alt="Atendimento em Psicanálise" class="img-slide">
         <div class="slide-overlay"></div>
         <div class="slide-conteudo">
-          <span class="badge-servico">Especialidade</span>
           <h2>Psicanálise</h2>
           <p>Espaço de escuta e acolhimento no qual a pessoa pode falar sobre suas experiências, sentimentos, conflitos, relações e questões que atravessam sua história.</p>
           <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -71,7 +70,6 @@
         <img src="imagenssite/psico.png" alt="Sessão de Psicoterapia" class="img-slide">
         <div class="slide-overlay"></div>
         <div class="slide-conteudo">
-          <span class="badge-servico">Acolhimento</span>
           <h2>Psicoterapia</h2>
           <p>Atendimento psicológico individualizado para adolescentes e adultos, destinado ao acompanhamento de diferentes demandas emocionais, relacionais e existenciais. </p>
           <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -83,7 +81,6 @@
         <img src="imagenssite/psicologia.png" alt="Avaliação Neuropsicológica" class="img-slide">
         <div class="slide-overlay"></div>
         <div class="slide-conteudo">
-          <span class="badge-servico">Diagnóstico</span>
           <h2>Avaliação Neuropsicológica</h2>
           <p>Investigação detalhada de funções como atenção, memória, linguagem, funções executivas, percepção e aprendizagem, contribuindo para a compreensão do funcionamento cognitivo e para o planejamento de estratégias de acompanhamento e intervenção.</p>
           <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -95,7 +92,6 @@
         <img src="imagenssite/avaliacao.png" alt="Atendimento em Psicanálise" class="img-slide">
         <div class="slide-overlay"></div>
         <div class="slide-conteudo">
-          <span class="badge-servico">Ocupacional</span>
           <h2>Avaliação Psicológica</h2>
           <p>Processo de investigação do funcionamento psicológico, considerando aspectos cognitivos, emocionais e comportamentais.</p>
           <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -107,7 +103,6 @@
         <img src="imagenssite/psiquiatria.png" alt="Atendimento em Psiquiatria" class="img-slide">
         <div class="slide-overlay"></div>
         <div class="slide-conteudo">
-          <span class="badge-servico">Ocupacional</span>
           <h2>Psiquiatria</h2>
           <p>Especialidade médica dedicada à avaliação, diagnóstico, tratamento e acompanhamento de questões relacionadas à saúde mental.</p>
           <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
@@ -148,6 +143,36 @@
   <a href="https://wa.me/5573981394240" target="_blank" class="whatsapp-btn" aria-label="WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   </a>
+  <script>
+
+      function abrirModalServicoPorNome(idDetalhe) {
+  if (!window.location.pathname.includes('servicos.html')) {
+    window.location.href = `servicos.html?abrir=${idDetalhe}`;
+    return;
+  }
+  abrirModalServico(idDetalhe);
+}
+
+function destacarCard(idCard) {
+  document.querySelectorAll('.card-servico').forEach(card => card.classList.remove('destacado'));
+  const card = document.getElementById(idCard);
+  if (card) {
+    card.classList.add('destacado');
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const params = new URLSearchParams(window.location.search);
+  const modalParaAbrir = params.get('abrir');
+  
+  if (modalParaAbrir) {
+    setTimeout(() => {
+      abrirModalServico(modalParaAbrir);
+    }, 200);
+  }
+});
+
+  </script>
 </body>
 </html>
 

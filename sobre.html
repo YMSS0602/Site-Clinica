@@ -1,56 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre Nós - Clínica Elaborar</title>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="clinica.js"></script>
+    <link rel="stylesheet" href="clinica.css">
+  </head>
+  <body>
+<!-- NAVBAR UNIFICADA -->
 
-  <!-- Fontes do Google -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-brand">
+        <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
+      </a>
 
-  <script src="clinica.js" defer></script>
-  <link rel="stylesheet" href="clinica.css">
-</head>
-<body>
-<header class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo-brand">
-      <img src="imagenssite/logo.png" alt="Logo Elaborar" class="logo-img">
-    </a>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-<!-- Navbar Unificada -->
-    <div class="nav-content" id="navContent">
-      <nav class="nav-menu">
-        <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+      <div class="nav-content" id="navContent">
+        <nav class="nav-menu">
+          <a href="sobre.html#a-clinica" class="nav-link">A Elaborar</a>
+          
+          <div class="nav-item has-dropdown">
+            <a href="servicos.html" class="nav-link">Serviços</a>
+            <div class="dropdown-menu">
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-orientacao')">Orientação Parental</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-supervisao')">Supervisão em Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-nr1')">NR-1 e Saúde Mental</a>
+            </div> <!-- Fechamento da div dropdown-menu que estava faltando -->
+          </div> <!-- Fechamento da div nav-item has-dropdown que estava faltando -->
 
-        <div class="nav-item has-dropdown">
-          <a href="servicos.html" class="nav-link">Serviços</a>
-          <div class="dropdown-menu">
-            <a href="servicos.html#psicoterapia">Psicoterapia</a>
-            <a href="servicos.html#psicanalise">Psicanálise</a>
-            <a href="servicos.html#psiquiatria">Psiquiatria</a>
-            <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-            <a href="servicos.html#orientacao-parental">Orientação Parental</a>
-          </div>
-        </div>
+          <a href="profissionais.html" class="nav-link">Profissionais</a>
+          <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
+          <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contatos.html" class="nav-link">Fale conosco</a>
+        </nav>
 
-        <a href="profissionais.html" class="nav-link">Profissionais</a>
-        <a href="atendimento.html" class="nav-link">Atendimento Particular</a>
-        <a href="perguntas.html" class="nav-link">Perguntas frequentes</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="contatos.html" class="nav-link">Fale conosco</a>
-      </nav>
-
-       <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+      </div>
     </div>
-  </div>
-</header>
-
+  </header>
   <!-- CONTEÚDO DA PÁGINA SOBRE NÓS -->
   <main>
 
@@ -75,4 +78,31 @@ Agende sua consulta e conheça a Elaborar.
       </div>
     </section>
 
-    
+    <script>
+      function abrirModalServicoPorNome(idDetalhe) {
+  if (!window.location.pathname.includes('servicos.html')) {
+    window.location.href = `servicos.html?abrir=${idDetalhe}`;
+    return;
+  }
+  abrirModalServico(idDetalhe);
+}
+
+function destacarCard(idCard) {
+  document.querySelectorAll('.card-servico').forEach(card => card.classList.remove('destacado'));
+  const card = document.getElementById(idCard);
+  if (card) {
+    card.classList.add('destacado');
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  const params = new URLSearchParams(window.location.search);
+  const modalParaAbrir = params.get('abrir');
+  
+  if (modalParaAbrir) {
+    setTimeout(() => {
+      abrirModalServico(modalParaAbrir);
+    }, 200);
+  }
+});
+    </script>

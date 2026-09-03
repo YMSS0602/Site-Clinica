@@ -35,12 +35,13 @@
           <div class="nav-item has-dropdown">
             <a href="servicos.html" class="nav-link">Serviços</a>
             <div class="dropdown-menu">
-              <a href="servicos.html#psicoterapia">Psicoterapia</a>
-              <a href="servicos.html#psicanalise">Psicanálise</a>
-              <a href="servicos.html#psiquiatria">Psiquiatria</a>
-              <a href="servicos.html#avaliacao">Avaliação Neuropsicológica</a>
-              <a href="servicos.html#orientacao-parental">Orientação Parental</a>
-            </div>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
+            <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
+           </div>
           </div>
 
           <a href="profissionais.html" class="nav-link">Profissionais</a>
@@ -50,7 +51,7 @@
           <a href="contatos.html" class="nav-link">Fale conosco</a>
         </nav>
 
-       <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
+        <button class="btn-agendar" onclick="abrirModal()">AGENDAR CONSULTA</button>
       </div>
     </div>
   </header>
@@ -58,10 +59,10 @@
  <!-- Seção do Blog -->
 <main class="secao-blog">
     <div class="card-box">
-        <h1 class="titulo-aba">Artigos & Reflexões</h1>
-        
+        <h1 class="titulo-aba">Textos & Reflexões</h1>
+           
         <!-- Botão que aciona o Modal de Administrador -->
-        <div class="admin-bar">
+        <div class="admin-bar" style="display: none;">
             <button id="openAdminModalBtn" class="btn-admin-toggle">Painel do Administrador</button>
         </div>
 <!-- Campo de Filtro / Busca -->
@@ -163,7 +164,7 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jbnloaHlieXJza292Z2FmdXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyMjUxMjIsImV4cCI6MjEwMzgwMTEyMn0.yeOPWAJ4aO6QkNWcxNxuhdVqgdOGD8NCjZKwW63DAy0';
     const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    let quill;
+    window.quill = null;
     let idPostEmEdicao = null;
 
     async function ehAdmin() {
@@ -172,13 +173,16 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      // Inicializa o Editor Quill
-      quill = new Quill('#editor-container', {
+      const AlignStyle = Quill.import('attributors/style/align');
+      Quill.register(AlignStyle, true);
+
+      window.quill = new Quill('#editor-container', {
         theme: 'snow',
         placeholder: 'Escreva seu artigo aqui...',
         modules: {
           toolbar: [
             ['bold', 'italic', 'underline'],
+            [{ 'align': '' }, { 'align': 'center' }, { 'align': 'right' }, { 'align': 'justify' }],
             [{ header: [1, 2, false] }],
             ['clean']
           ]
@@ -220,8 +224,6 @@
 
         const dataFormatada = post.created_at ? new Date(post.created_at).toLocaleDateString('pt-BR') : '';
         const nomeAutor = post.autor ? `Por ${post.autor}` : '';
-
-        // Limpeza de parágrafos vazios salvos pelo Quill
         let conteudoLimpo = post.conteudo ? post.conteudo.replace(/<p><br><\/p>/g, '').replace(/<p><\/p>/g, '') : '';
 
         postDiv.innerHTML = `
@@ -236,7 +238,7 @@
       });
     }
 
-    function prepararEdicao(id, tituloAtual, autorAtual) {
+    async function prepararEdicao(id, tituloAtual, autorAtual) {
       idPostEmEdicao = id;
       
       adminModal.classList.add('ativo');
@@ -248,14 +250,21 @@
       document.getElementById('postTitle').value = tituloAtual;
       document.getElementById('postAuthor').value = autorAtual || 'Millena Mendonça';
 
-      _supabase.from('posts').select('conteudo').eq('id', id).single().then(({ data }) => {
-        if (data) {
-          quill.root.innerHTML = data.conteudo;
-        }
-      });
-
       const btnSubmit = document.querySelector('#blogForm button[type="submit"]');
       if (btnSubmit) btnSubmit.textContent = 'Salvar Alterações';
+
+      const { data, error } = await _supabase
+        .from('posts')
+        .select('conteudo')
+        .eq('id', Number(id))
+        .single();
+
+      if (data && data.conteudo) {
+        const delta = window.quill.clipboard.convert({ html: data.conteudo });
+        window.quill.setContents(delta, 'silent');
+      } else {
+        window.quill.setContents([]);
+      }
     }
 
     async function salvarPost(event) {
@@ -265,25 +274,22 @@
         return;
       }
 
-      const titulo = document.getElementById('postTitle').value;
-      const autor = document.getElementById('postAuthor').value || 'Millena Mendonça';
-      
-      // Limpa as tags vazias do Quill antes de enviar para o banco
-      let conteudo = quill.root.innerHTML;
-      conteudo = conteudo.replace(/<p><br><\/p>/g, '').replace(/<p><\/p>/g, '');
+      const titulo = document.getElementById('postTitle').value.trim();
+      const autor = document.getElementById('postAuthor').value.trim() || 'Millena Mendonça';
+      const conteudo = window.quill.root.innerHTML;
 
-      if (!titulo || quill.getText().trim().length === 0) {
+      if (!titulo || window.quill.getText().trim().length === 0) {
         alert('Por favor, preencha o título e o conteúdo do artigo!');
         return;
       }
 
       let error;
 
-      if (idPostEmEdicao) {
+      if (idPostEmEdicao !== null && idPostEmEdicao !== undefined && idPostEmEdicao !== '') {
         const res = await _supabase
           .from('posts')
           .update({ titulo, autor, conteudo })
-          .eq('id', idPostEmEdicao);
+          .eq('id', Number(idPostEmEdicao));
         error = res.error;
       } else {
         const res = await _supabase
@@ -293,21 +299,21 @@
       }
 
       if (error) {
-        alert('Erro ao salvar o artigo.');
+        alert('Erro ao salvar o artigo no banco de dados.');
         console.error(error);
         return;
       }
 
       document.getElementById('postTitle').value = '';
       document.getElementById('postAuthor').value = 'Millena Mendonça';
-      quill.setContents([]);
+      window.quill.setContents([]);
       idPostEmEdicao = null;
       
       const btnSubmit = document.querySelector('#blogForm button[type="submit"]');
       if (btnSubmit) btnSubmit.textContent = 'Publicar Artigo';
       
       adminModal.classList.remove('ativo');
-      carregarPosts();
+      await carregarPosts();
       alert('Artigo salvo com sucesso!');
     }
 
@@ -318,7 +324,7 @@
         const { error } = await _supabase
           .from('posts')
           .delete()
-          .eq('id', id);
+          .eq('id', Number(id));
 
         if (error) {
           alert('Erro ao deletar artigo.');
@@ -356,7 +362,7 @@
         if (btnSubmit) btnSubmit.textContent = 'Publicar Artigo';
         document.getElementById('postTitle').value = '';
         document.getElementById('postAuthor').value = 'Millena Mendonça';
-        if (quill) quill.setContents([]);
+        if (window.quill) window.quill.setContents([]);
 
         adminModal.classList.add('ativo');
         loginErrorMsg.style.display = 'none';
@@ -454,15 +460,34 @@
     }
 
     // --- CONTROLE DO MENU HAMBÚRGUER ---
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const navContent = document.getElementById('navContent');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navContent = document.getElementById('navContent');
 
-if (hamburgerBtn && navContent) {
-  hamburgerBtn.addEventListener('click', () => {
-    navContent.classList.toggle('ativo');
-    hamburgerBtn.classList.toggle('ativo');
-  });
-}
+    if (hamburgerBtn && navContent) {
+      hamburgerBtn.addEventListener('click', () => {
+        navContent.classList.toggle('ativo');
+        hamburgerBtn.classList.toggle('ativo');
+      });
+    }
+
+    // Atalho de teclado secreto: Pressione a tecla F2 para abrir o painel de admin
+    document.addEventListener('keydown', async function(e) {
+      if (e.key === 'F2') {
+        e.preventDefault();
+        const openAdminModalBtn = document.getElementById('openAdminModalBtn');
+        if (openAdminModalBtn) {
+          openAdminModalBtn.click();
+        }
+      }
+    });
+
+    function abrirModalServicoPorNome(idDetalhe) {
+      if (!window.location.pathname.includes('servicos.html')) {
+        window.location.href = `servicos.html?abrir=${idDetalhe}`;
+        return;
+      }
+      abrirModalServico(idDetalhe);
+    }
   </script>
 </body>
 </html>
