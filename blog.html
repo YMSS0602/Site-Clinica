@@ -13,7 +13,6 @@
   <!-- Quill Rich Text Editor CSS & JS -->
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-  
 </head>
 <body class="fundo-creme">
 
@@ -35,13 +34,13 @@
           <div class="nav-item has-dropdown">
             <a href="servicos.html" class="nav-link">Serviços</a>
             <div class="dropdown-menu">
-            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
-            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
-            <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
-            <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
-            <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
-            <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
-           </div>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicoterapia')">Psicoterapia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psicanalise')">Psicanálise</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-psiquiatria')">Psiquiatria</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-neuropsicologia')">Neuropsicologia</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-envelhecimento')">Cuidado no envelhecimento</a>
+              <a href="#" onclick="abrirModalServicoPorNome('detalhe-maternidade')">Maternidade e primeira infância</a>
+            </div>
           </div>
 
           <a href="profissionais.html" class="nav-link">Profissionais</a>
@@ -59,16 +58,19 @@
  <!-- Seção do Blog -->
 <main class="secao-blog">
     <div class="card-box">
-        <h1 class="titulo-aba">Textos & Reflexões</h1>
-           
-        <!-- Botão que aciona o Modal de Administrador -->
-        <div class="admin-bar" style="display: none;">
-            <button id="openAdminModalBtn" class="btn-admin-toggle">Painel do Administrador</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+            <h1 class="titulo-aba" style="margin: 0;">Textos & Reflexões</h1>
+               
+            <!-- Botão do Administrador visível e bem posicionado -->
+            <div class="admin-bar">
+                <button id="openAdminModalBtn" class="btn-admin-toggle" style="background: #2c3e50; color: white; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">Painel do Administrador</button>
+            </div>
         </div>
-<!-- Campo de Filtro / Busca -->
-<div style="margin-bottom: 20px;">
-    <input type="text" id="searchInput" placeholder="Filtrar artigos por título ou conteúdo..." onkeyup="filtrarPosts()" style="width: 100%; padding: 12px 16px; border: 1px solid #dcd6d0; border-radius: 8px; font-family: 'Syne', sans-serif; background: #fff;">
-</div>
+
+        <!-- Campo de Filtro / Busca -->
+        <div style="margin-bottom: 20px;">
+            <input type="text" id="searchInput" placeholder="Filtrar artigos por título ou conteúdo..." onkeyup="filtrarPosts()" style="width: 100%; padding: 12px 16px; border: 1px solid #dcd6d0; border-radius: 8px; font-family: 'Syne', sans-serif; background: #fff;">
+        </div>
 
         <!-- Container onde os posts do Supabase aparecem -->
         <div id="postsContainer">
@@ -99,7 +101,7 @@
             <p id="loginErrorMsg" style="color: #c94a4a; font-size: 0.85rem; display: none; text-align: center;">E-mail ou senha incorretos. Tente novamente.</p>
         </div>
 
-        <!-- Etapa 2: Formulário de Postagem (Só aparece após login bem-sucedido) -->
+        <!-- Etapa 2: Formulário de Postagem -->
         <div id="adminContentArea" style="display: none; margin-top: 15px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
               <span style="color: #25d366; font-weight: 600; font-size: 0.9rem;">● Modo Administrador Ativo</span>
@@ -135,7 +137,7 @@
       <span class="close-btn" onclick="fecharModal()">&times;</span>
       
       <h2>Agendar Consulta</h2>
-      <p>Entre em contato com a Elaborar para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
+      <p>Entre em contato com a Elaborار para consultar horários disponíveis, conhecer as modalidades de atendimento e realizar seu agendamento. </p>
 
       <form id="formAgendamento" onsubmit="enviarParaWhatsApp(event)">
         <div class="form-row">
@@ -155,8 +157,8 @@
     </div>
   </div>
 
-  <footer class="rodape-simples">
-    <p>© Elaborar – Centro Integrado de Saúde Mental.</p>
+  <footer class="rodape-simples" style="text-align: center; padding: 30px 0; font-size: 0.9rem; color: #7a7067;">
+    <p>&copy; 2026 Clínica Elaborar. Todos os direitos reservados.</p>
   </footer>
 
   <script>
